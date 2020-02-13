@@ -1,8 +1,9 @@
 class Player{
   private:
-    GreenCard* fateDeck;
+    DeckBuilder* deck;
+//  GreenCard* fateDeck;
     GreenCard* hand;
-    BlackCard* dynastyDeck;
+//  BlackCard* dynastyDeck;
     int numberOfProvinces;
     //oi eparxies einai mayres kartes 
   public:
