@@ -4,7 +4,7 @@ class Player{
     GreenCard* hand;
     BlackCard* dynastyDeck;
     int numberOfProvinces;
-    Province* provinces; // δεν ειναι φτιαγμενη αυτη η κλαση
+    //oi eparxies einai mayres kartes 
   public:
       Player(); //numberOfProvinces initially is 4
       ~Player();
