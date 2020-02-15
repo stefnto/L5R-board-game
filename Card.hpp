@@ -42,4 +42,3 @@ class BlackCard: public Card{
 };
 
 #endif
-
