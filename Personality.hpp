@@ -1,51 +1,51 @@
-#ifndef _PERSONALITY_HPP_
-#define _PERSONALITY_HPP_
+#ifndef _PERSONALITY_H_
+#define _PERSONALITY_H_
 
 #include "Card.hpp"
 #include "Follower.hpp"
 #include "Item.hpp"
 
 class Personality: public BlackCard{
-  private:
+  protected:
     int attack;
-    int defence;
+    int defense;
     int honour;
     bool isDead;
     Follower* follower;
     Item* item;
   public:
     Personality();
-    ~Personality();
+    // ~Personality();
 };
 
 class Attacker : public Personality{
   public:
-    Attacker();
-    ~Attacker();
+    Attacker(std::string);
+    // ~Attacker();
 };
 
 class Defender : public Personality{
   public:
-    Defender();
-    ~Defender();
+    Defender(std::string);
+    // ~Defender();
 };
 
 class Champion : public Personality{
   public:
-    Champion();
-    ~Champion();
+    Champion(std::string);
+    // ~Champion();
 };
 
 class Chancellor : public Personality{
   public:
-    Chancellor();
-    ~Chancellor();
+    Chancellor(std::string);
+    // ~Chancellor();
 };
 
 class Shogun : public Personality{
   public:
-    Shogun();
-    ~Shogun();
+    Shogun(std::string);
+    // ~Shogun();
 };
 
 #endif
