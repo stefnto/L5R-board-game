@@ -1,5 +1,5 @@
-#ifndef _PERSONALITY_H_
-#define _PERSONALITY_H_
+#ifndef _PERSONALITY_HPP_
+#define _PERSONALITY_HPP_
 
 #include "Card.hpp"
 #include "Follower.hpp"

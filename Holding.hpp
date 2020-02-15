@@ -1,5 +1,5 @@
-#ifndef _HOLDING_H
-#define _HOLDING_H
+#ifndef _HOLDING_HPP_
+#define _HOLDING_HPP_
 
 #include "Card.hpp"
 
