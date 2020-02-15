@@ -1,4 +1,4 @@
-#include "GameBoard.h"
+#include "GameBoard.hpp"
 
 Gameboard::Gameboard(){
   cout << "GameBoard created!\n";

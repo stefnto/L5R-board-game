@@ -9,11 +9,11 @@
 #include <ctime>
 #include <cstdlib>
 
-#include "Card.h"
-#include "Personality.h"
-#include "Holding.h"
-#include "Follower.h"
-#include "Item.h"
+#include "Card.hpp"
+#include "Personality.hpp"
+#include "Holding.hpp"
+#include "Follower.hpp"
+#include "Item.hpp"
 
 #define DECKSIZE          40
 #define MAXDECKSIZE       60
@@ -51,13 +51,14 @@
 class DeckBuilder
 {
 	private:
-		list<GreenCard*>* green;
-		list<BlackCard*>* black;
+		std::list <GreenCard*> green;
+		//list<GreenCard*>* green;
+		std::list<BlackCard*>* black;
 	public:
 		DeckBuilder();
 		~DeckBuilder();
-		list<GreenCard *>* createFateDeck();
-	 	list<BlackCard *>* createDynastyDeck();
+		std::list<GreenCard *>* createFateDeck();
+	 	std::list<BlackCard *>* createDynastyDeck();
 
 	 	void DeckBuilder::deckShuffler(list<BlackCard *> *black);
 		void DeckBuilder::deckShuffler(list<GreenCard *> *green);
