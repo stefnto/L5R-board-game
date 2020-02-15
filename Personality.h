@@ -3,7 +3,6 @@
 
 #include "Card.h"
 
-
 class Personality: public BlackCard{
   private:
     int attack;

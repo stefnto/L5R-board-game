@@ -17,7 +17,7 @@ class GreenCard : public Card{
     int attackBonus;
     int defenceBonus;
     int minimumHonour;
-    string cardText;
+    std::string cardText;
     int effectBonus;
     int effectCost;
   public:

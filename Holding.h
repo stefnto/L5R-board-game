@@ -43,10 +43,10 @@ class Farmland : public Holding{
     ~Farmland();
 };
 
-class Solo : public Holding{
+class GiftsandFavour: public Holding{
   public:
-    Solo();
-    ~Solo();
+    GiftsandFavour();
+    ~GiftsandFavour();
 };
 
 class Stronghold : public Holding{
