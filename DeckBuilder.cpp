@@ -11,19 +11,19 @@ DeckBuilder::DeckBuilder()
 
 DeckBuilder::~DeckBuilder()
 {
-	list<BlackCard *>::iterator it;
-	list<GreenCard *>::iterator it2;
+	std::list<BlackCard *>::iterator it;
+	std::list<GreenCard *>::iterator it2;
 	for (it = black->begin(); it != black->end(); it++)
 	{
 		black->remove((*it));
 		delete *it;
 		it = black->begin();
 	}
-	for (it = green->begin(); it != green->end(); it++)
+	for (it2 = green->begin(); it2 != green->end(); it2++)
 	{
-		green->remove((*it));
-		delete *it;
-		it = green->begin();
+		green->remove((*it2));
+		delete *it2;
+		it2 = green->begin();
 	}
 	delete black;
 	delete green;
@@ -59,7 +59,7 @@ list<GreenCard *> *DeckBuilder::createFateDeck()
 	return green;
 }
 
-list<BlackCard *> *DeckBuilder::createDynastyDeck()
+std::list<BlackCard *> *DeckBuilder::createDynastyDeck()
 {
 	int i;
 	//Create Personalities
@@ -94,10 +94,10 @@ list<BlackCard *> *DeckBuilder::createDynastyDeck()
 	return black;
 }
 
-void DeckBuilder::deckShuffler(list<BlackCard *> *black)
+void DeckBuilder::deckShuffler(std::list<BlackCard *> *black)
 {
-	vector<BlackCard *> vect;
-	list<BlackCard *>::iterator it;
+	std::vector<BlackCard *> vect;
+	std::list<BlackCard *>::iterator it;
 	for (it = black->begin(); it != black->end(); it++)
 		vect.push_back((*it));
 
@@ -105,15 +105,15 @@ void DeckBuilder::deckShuffler(list<BlackCard *> *black)
 
 	black->clear();
 
-	vector<BlackCard *>::iterator it2;
+	std::vector<BlackCard *>::iterator it2;
 	for (it2 = vect.begin(); it2 != vect.end(); it2++)
 		black->push_back((*it2));
 }
 
-void DeckBuilder::deckShuffler(list<GreenCard *> *green)
+void DeckBuilder::deckShuffler(std::list<GreenCard *> *green)
 {
-	vector<GreenCard *> vect;
-	list<GreenCard *>::iterator it;
+	std::vector<GreenCard *> vect;
+	std::list<GreenCard *>::iterator it;
 	for (it = green->begin(); it != green->end(); it++)
 		vect.push_back((*it));
 
@@ -121,7 +121,7 @@ void DeckBuilder::deckShuffler(list<GreenCard *> *green)
 
 	green->clear();
 
-	vector<GreenCard *>::iterator it2;
+	std::vector<GreenCard *>::iterator it2;
 	for (it2 = vect.begin(); it2 != vect.end(); it2++)
 		green->push_back((*it2));
 }

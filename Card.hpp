@@ -1,6 +1,6 @@
 ////////////////CARD////////////////////////
-#ifndef _CARD_H_
-#define _CARD_H_
+#ifndef _CARD_HPP_
+#define _CARD_HPP_
 
 #include <string>
 //apo 3.1 ayta ta enumerations tha xreiastoun
@@ -42,4 +42,3 @@ class BlackCard: public Card{
 };
 
 #endif
-

@@ -1,5 +1,5 @@
-#ifndef _FOLLOWER_H_
-#define _FOLLOWER_H_
+#ifndef _FOLLOWER_HPP_
+#define _FOLLOWER_HPP_
 
 #include "Card.hpp"
 
