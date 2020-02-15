@@ -1,3 +1,6 @@
+#ifndef _PHASES_H_
+#define _PHASES_H_
+
 class startingPhase{
   public:
     void untapEverything();
@@ -29,3 +32,5 @@ class finalPhase{
     void printArena();
     void printHoldings();
 };
+
+#endif

@@ -1,3 +1,6 @@
+#ifndef _GAMEBOARD_H_
+#define _GAMEBOARD_H_
+
 #include "Card.h"
 #include "Player.h"
 
@@ -9,3 +12,6 @@ class GameBoard{
     ~GameBoard();
     void initializeGameBoard(int);
 };
+
+
+#endif
