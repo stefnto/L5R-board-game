@@ -1,49 +1,48 @@
-#ifndef _FOLLOWER_HPP_
-#define _FOLLOWER_HPP_
+#ifndef _FOLLOWER_H_
+#define _FOLLOWER_H_
 
 #include "Card.hpp"
 
 class Follower: public GreenCard{
-  private:
   public:
     Follower();
-    ~Follower();
+    // ~Follower();
 };
 
 class Footsoldier : public Follower{
   public:
-    Footsoldier();
-    ~Footsoldier();
+    Footsoldier(std::string);
+    // ~Footsoldier();
 };
 
 class Archer : public Follower{
   public:
-    Archer();
-    ~Archer();
+    Archer(std::string);
+    // ~Archer();
 };
 
 class Cavalry : public Follower{
   public:
-    Cavalry();
-    ~Cavalry();
+    Cavalry(std::string);
+    // ~Cavalry();
 };
 
 class Bushido : public Follower{
   public:
-    Bushido();
-    ~Bushido();
+    Bushido(std::string);
+    // ~Bushido();
 };
 
 class Sieger : public Follower{
   public:
-    Sieger();
-    ~Sieger();
+    Sieger(std::string);
+    // ~Sieger();
 };
 
-class Naval : public Follower{ // IS ATAKEBUNE
+class Atakebune : public Follower{ // IS ATAKEBUNE
   public:
-    Naval();
-    ~Naval();
+    Atakebune(std::string);
+    // ~Naval();
 };
 
 #endif

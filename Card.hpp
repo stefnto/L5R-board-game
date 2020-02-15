@@ -1,38 +1,45 @@
 ////////////////CARD////////////////////////
-#ifndef _CARD_HPP_
-#define _CARD_HPP_
+#ifndef _CARD_H_
+#define _CARD_H_
+
+#include <string>
+//apo 3.1 ayta ta enumerations tha xreiastoun
+enum Personalities{ATTACKER, DEFENDER, SHOGUN, CHANCELLOR, CHAMPION};
+enum Holdings{PLAIN, MINE, GOLD_MINE, CRYSTAL_MINE, FARMS, SOLO, STRONGHOLD};
+enum Followers{FOOTSOLDIER, ARCHER, SIEGER, CAVALRY, NAVAL, BUSHIDO};
+enum Items{KATANA, SPEAR, BOW, NINJATO, WAKIZASHI};
 
 class Card{
-  private:
+  protected:
     std::string name;
     int cost;
     bool isTapped;
    public:
      Card();
-     ~Card();
+     // ~Card();
 };
 
 class GreenCard : public Card{
-  private:
+  protected:
     int attackBonus;
-    int defenceBonus;
+    int defenseBonus;
     int minimumHonour;
     std::string cardText;
     int effectBonus;
     int effectCost;
   public:
     GreenCard();
-    ~GreenCard();
+    // ~GreenCard();
     void EnableEffectBonus(int);
 };
 
 class BlackCard: public Card{
-private:
- bool isRevealed;
-public:
- BlackCard();
- ~BlackCard();
+  protected:
+    bool isRevealed;
+  public:
+    BlackCard();
+    // ~BlackCard();
 };
 
-
 #endif
+

@@ -1,44 +1,44 @@
-#ifndef _ITEM_HPP_
-#define _ITEM_HPP_
+#ifndef _ITEM_H_
+#define _ITEM_H_
 
 #include "Card.hpp"
 
 class Item: public GreenCard{
-  private:
+  protected:
     int durability;
   public:
     Item();
-    ~Item();
+    // ~Item();
 };
 
 class Katana : public Item{
   public:
-    Katana();
-    ~Katana();
+    Katana(std::string);
+    // ~Katana();
 };
 
 class Spear : public Item{
   public:
-    Spear();
-    ~Spear();
+    Spear(std::string);
+    // ~Spear();
 };
 
 class Bow : public Item{
   public:
-    Bow();
-    ~Bow();
+    Bow(std::string);
+    // ~Bow();
 };
 
 class Ninjato : public Item{
   public:
-    Ninjato();
-    ~Ninjato();
+    Ninjato(std::string);
+    // ~Ninjato();
 };
 
 class Wakizashi : public Item{
   public:
-     Wakizashi();
-     ~Wakizashi();
+     Wakizashi(std::string);
+     // ~Wakizashi();
 };
 
 #endif
