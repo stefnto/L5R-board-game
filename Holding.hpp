@@ -1,52 +1,52 @@
-#ifndef _HOLDING_HPP_
-#define _HOLDING_HPP_
+#ifndef _HOLDING_H
+#define _HOLDING_H
 
 #include "Card.hpp"
 
 class Holding: public BlackCard{
-  private:
+  protected:
     int harvestValue;
     Holding* upperHolding;
     Holding* subHolding;
   public:
     Holding();
-    ~Holding();
+    // ~Holding();
 };
 
 class Plain : public Holding{
   public:
-    Plain();
-    ~Plain();
+    Plain(std::string);
+    // ~Plain();
 };
 
 class Mine : public Holding{
   public:
-    Mine();
-    ~Mine();
+    Mine(std::string);
+    // ~Mine();
 };
 
-class Gold_Mine : public Holding{
+class GoldMine : public Holding{
   public:
-    Gold_Mine();
-    ~Gold_Mine();
+    GoldMine(std::string);
+    // ~GoldMine();
 };
 
-class Crystal_Mine : public Holding{
+class CrystalMine : public Holding{
   public:
-    Crystal_Mine();
-    ~Crystal_Mine();
+    CrystalMine(std::string);
+    // ~Crystal_Mine();
 };
 
 class Farmland : public Holding{
   public:
-    Farmland();
-    ~Farmland();
+    Farmland(std::string);
+    // ~Farmland();
 };
 
-class GiftsandFavour: public Holding{
+class GiftsandFavour : public Holding{
   public:
-    GiftsandFavour();
-    ~GiftsandFavour();
+    GiftsandFavour(std::string);
+    // ~GiftsandFavour();
 };
 
 class Stronghold : public Holding{
@@ -55,8 +55,8 @@ class Stronghold : public Holding{
     int money;
     int initialDefense;
   public:
-    Stronghold();
-    ~Stronghold();
+    Stronghold(std::string);
+    // ~Stronghold();
 };
 
 #endif
