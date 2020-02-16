@@ -1,7 +1,7 @@
 #include "Personality.hpp"
 
 Personality::Personality(){
-  isDead = 0 //the card is alive
+  isDead = 0; //the card is alive
 }
 
 Attacker::Attacker(std::string name){

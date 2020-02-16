@@ -6,7 +6,7 @@ Card::Card(){
 
 GreenCard::GreenCard(){} //we dont need to write anything because the stats are different in each type
 
-void GreenCard::EnableEffectBonus(){
+void GreenCard::EnableEffectBonus(int k){
 
 }
 

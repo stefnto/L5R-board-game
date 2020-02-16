@@ -11,6 +11,7 @@ class GameBoard{
     GameBoard(int);
     ~GameBoard();
     void initializeGameBoard(int);
+    void printGameStatistics();
 };
 
 #endif

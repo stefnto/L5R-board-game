@@ -17,8 +17,3 @@ void GameBoard::initializeGameBoard(int k){ //k is the number of the players
     Player* player= new Player();
     players.push_back(*player);
 }
-
-
-int main(void){
-  GameBoard game(3);
-}
