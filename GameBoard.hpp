@@ -6,12 +6,11 @@
 
 class GameBoard{
   private:
-    Player* players;
+    std::vector<Player> players;
   public:
-    GameBoard();
+    GameBoard(int);
     ~GameBoard();
     void initializeGameBoard(int);
 };
-
 
 #endif
