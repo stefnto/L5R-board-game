@@ -1,14 +1,24 @@
-#include "GameBoard.h"
+#include "GameBoard.hpp"
+#include "Player.hpp"
 
-Gameboard::Gameboard(){
+using namespace std;
+
+GameBoard::GameBoard(int k){
   cout << "GameBoard created!\n";
+  cout << "Players created"<< endl;
+  initializeGameBoard(k);
 }
 
-GameBoard::GameBoard(){
+GameBoard::~GameBoard(){
   cout << "GameBoard to be destroyed!\n";
-  delete players[];
 }
 
 void GameBoard::initializeGameBoard(int k){ //k is the number of the players
-  players = new Player[k];
+    Player* player= new Player();
+    players.push_back(*player);
+}
+
+
+int main(void){
+  GameBoard game(3);
 }
