@@ -61,6 +61,8 @@ class DeckBuilder
 
 	 	void deckShuffler(std::list<BlackCard *> *black);
 		void deckShuffler(std::list<GreenCard *> *green);
+		GreenCard* getLastGreenCard();//
+		void  deleteLastGreenCard();
 };
 
 #endif
