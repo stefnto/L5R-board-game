@@ -17,9 +17,18 @@ Player::~Player(){
 void Player::GetGreenCard(){
   hand.push_back(deck->getLastGreenCard());
   deck->deleteLastGreenCard();
-  //std::cout << "GreenCard gotten" << std::endl;
 }
 
-void Player::addHolding(Holding& stronghold){
-  holdings.push_back(stronghold);
+void Player::addHolding(Holding& holding){
+  holdings.push_back(holding);
+}
+
+
+void Player::addStronghold(Stronghold*& stronghold){
+  this->stronghold = stronghold;
+}
+
+void Player::GetProvince(){
+  provinces.push_back(deck->getLastBlackCard());
+  deck->deleteLastBlackCard();
 }

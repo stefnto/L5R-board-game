@@ -1,4 +1,6 @@
 #include "Holding.hpp"
+#include <ctime>
+#include <cstdlib>
 
 Holding::Holding(){}
 
@@ -38,8 +40,9 @@ CrystalMine::CrystalMine(std::string name){
   harvestValue = 6;
 }
 
-Stronghold::Stronghold(std::string name){
-  honour = 5;
+Stronghold::Stronghold(std::string name,int k){
+  srand(unsigned(time(NULL)));
+  honour = rand()%k;
   initialDefense = 5;
   money = 5;
 }

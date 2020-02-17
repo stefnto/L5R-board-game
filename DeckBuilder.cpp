@@ -135,3 +135,11 @@ GreenCard* DeckBuilder::getLastGreenCard(){
 void DeckBuilder::deleteLastGreenCard(){
 	green->pop_back();
 }
+
+BlackCard* DeckBuilder::getLastBlackCard(){
+	return black->front();
+}
+
+void DeckBuilder::deleteLastBlackCard(){
+	black->pop_back();
+}

@@ -7,10 +7,12 @@
 
 class Player{
   private:
+    Stronghold* stronghold;
     DeckBuilder* deck;
     std::vector<GreenCard *> hand;
     std::vector<Holding> holdings;
     std::vector<Personality> activePersonalities;
+    std::vector<BlackCard *> provinces;
     int numberOfProvinces;
     bool isDead;
     //oi eparxies einai mayres kartes
@@ -19,6 +21,8 @@ class Player{
       ~Player();
       void GetGreenCard();
       void addHolding(Holding&);
+      void addStronghold(Stronghold*&);
+      void GetProvince();
 };
 
 #endif

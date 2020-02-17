@@ -20,8 +20,11 @@ void GameBoard::initializeGameBoard(int k){ //k is the number of the players
     for (int j=0; j<4; j++)//4 GreenCards are drawn from each player at the start of the game
       players[i].GetGreenCard();
     string string1 = "Player" + to_string(i+1) + " Stronghold";
-    Holding* stronghold = new Stronghold(string1);
-    players[i].addHolding(*stronghold);//Function addHolding() here adds the Stronghold of each player
+    cout << string1 << endl;
+    Stronghold* stronghold = new Stronghold(string1, k);
+    players[i].addStronghold(stronghold);//Function addHolding() here adds the Stronghold of each player
+    for (int j=0; j<4; j++)
+      players[j].GetProvince();
   }
   cout << k << " players are playing the game!" << endl;
 }
