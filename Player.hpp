@@ -18,6 +18,7 @@ class Player{
       Player(); //numberOfProvinces initially is 4
       ~Player();
       void GetGreenCard();
+      void addHolding(Holding&);
 };
 
 #endif

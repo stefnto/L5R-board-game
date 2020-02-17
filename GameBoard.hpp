@@ -12,6 +12,7 @@ class GameBoard{
     ~GameBoard();
     void initializeGameBoard(int);
     void printGameStatistics();
+    void gameplay();
 };
 
 #endif
