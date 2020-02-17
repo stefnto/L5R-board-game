@@ -1,11 +1,1 @@
-# Cpp-Project
-
- Added files
- done τα 1.2, 2.1 απο pdf
- 
- προσθήκη *#include "DeckBuilder.hpp"*  στο player.h
-
-αλλαγες στα αρχεια Card.hpp, Follower.hpp, Item.hpp, Personality.hpp, Holding.hpp.
-
-προσθηκη των .cpp τους.
-δεν εχω γραψει το cardtext των καρτων.
+πρόσθεσα τις συναρτήρσεις για τα provinces αλλα τρώει segme  και δεν ξέρω γιατί
