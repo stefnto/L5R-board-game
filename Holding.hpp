@@ -49,11 +49,11 @@ class GiftsandFavour : public Holding{
     // ~GiftsandFavour();
 };
 
-class Stronghold : public Holding{
+class Stronghold : public BlackCard{
   private:
     int honour;
     int money;
-    int initialDefense;
+    int initialDefense;  //we will need an array of 4 posiions, each one will be the initdef of every province
   public:
     Stronghold(std::string);
     // ~Stronghold();
