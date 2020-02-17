@@ -6,7 +6,7 @@
 
 class GameBoard{
   private:
-    std::vector<Player> players;
+    Player* players;
   public:
     GameBoard(int);
     ~GameBoard();

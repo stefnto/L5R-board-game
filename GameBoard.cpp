@@ -10,13 +10,10 @@ GameBoard::GameBoard(int k){
 
 GameBoard::~GameBoard(){
   cout << "GameBoard to be destroyed!\n";
-  //cout << players.size() << endl;
 }
 
 void GameBoard::initializeGameBoard(int k){ //k is the number of the players
-    for (int i=0; i<k; i++){
-      players.emplace_back();
-  }
+  players = new Player[k];
   /*vector<Player>::iterator it;
   it = players.begin();
   cout << players.size() << endl;*/
