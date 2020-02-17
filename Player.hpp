@@ -6,7 +6,7 @@
 
 class Player{
   private:
-    DeckBuilder* deck;
+    DeckBuilder deck;
     std::vector<GreenCard *> hand;
     std::vector<Holding> holdings;
     std::vector<Personality> activePersonalities;
