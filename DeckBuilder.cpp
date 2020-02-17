@@ -137,7 +137,7 @@ void DeckBuilder::deleteLastGreenCard(){
 }
 
 BlackCard* DeckBuilder::getLastBlackCard(){
-	return black->front();
+	return black->back();
 }
 
 void DeckBuilder::deleteLastBlackCard(){
