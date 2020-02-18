@@ -17,6 +17,8 @@ class Card{
    public:
      Card();
      // ~Card();
+     void unTapp();
+     void Tapp();
 };
 
 class GreenCard : public Card{
@@ -39,6 +41,8 @@ class BlackCard: public Card{
   public:
     BlackCard();
     // ~BlackCard();
+    void Reveal();
+    void Hide();
 };
 
 #endif
