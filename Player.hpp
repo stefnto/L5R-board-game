@@ -23,6 +23,7 @@ class Player{
       void addHolding(Holding&);
       void addStronghold(Stronghold*&);
       void GetProvince();
+      int getStrongholdHonour();
 };
 
 #endif

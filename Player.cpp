@@ -32,3 +32,7 @@ void Player::GetProvince(){
   provinces.push_back(deck->getLastBlackCard());
   deck->deleteLastBlackCard();
 }
+
+int Player::getStrongholdHonour(){
+  return stronghold->getHonour();
+}
