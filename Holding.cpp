@@ -45,3 +45,7 @@ Stronghold::Stronghold(std::string name,int k){
   initialDefense = 5;
   money = 5;
 }
+
+int Stronghold::getHonour(){
+  return honour;
+}

@@ -13,6 +13,9 @@ class GameBoard{
     void initializeGameBoard(int);
     void printGameStatistics();
     void gameplay();
+    void sortplayers(int);
 };
+
+bool compareHonours(int , int);
 
 #endif
