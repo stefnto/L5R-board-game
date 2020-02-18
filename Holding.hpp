@@ -56,8 +56,8 @@ class Stronghold : public BlackCard{
     int initialDefense;
   public:
     Stronghold(std::string, int);
-    int getHonour();
     // ~Stronghold();
+    int getHonour();
 };
 
 #endif

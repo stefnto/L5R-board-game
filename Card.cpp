@@ -1,4 +1,5 @@
 #include "Card.hpp"
+#include <string>
 
 Card::Card(){
     unTapp();
@@ -29,4 +30,8 @@ void BlackCard::Reveal(){
 
 void BlackCard::Hide(){
   isRevealed = false;
+}
+
+std::string Card::getName(){
+  return this->name;
 }

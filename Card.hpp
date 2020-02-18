@@ -19,6 +19,7 @@ class Card{
      // ~Card();
      void unTapp();
      void Tapp();
+     std::string getName();
 };
 
 class GreenCard : public Card{

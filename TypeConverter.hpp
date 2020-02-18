@@ -1,12 +1,12 @@
 #ifndef _TYPECONVERTER_HPP_
 #define _TYPECONVERTER_HPP_
 
-#include "Card.h"
-#include "Personality.h"
-#include "Holding.h"
-#include "Follower.h"
-#include "Follower.h"
-#include "Item.h"
+#include "Card.hpp"
+#include "Personality.hpp"
+#include "Holding.hpp"
+#include "Follower.hpp"
+#include "Follower.hpp"
+#include "Item.hpp"
 
 class TypeConverter{
 public:
