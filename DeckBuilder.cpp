@@ -6,7 +6,7 @@ DeckBuilder::DeckBuilder()
 {
 	black = new list<BlackCard *>();
 	green = new list<GreenCard *>();
-	srand(unsigned(time(NULL)));
+	//srand(unsigned(time(NULL)));
 }
 
 DeckBuilder::~DeckBuilder()
@@ -57,6 +57,7 @@ list<GreenCard *> *DeckBuilder::createFateDeck()
 		green->push_back(new Wakizashi("Kusanagi"));
 
 	deckShuffler(green);
+
 	return green;
 }
 
@@ -91,8 +92,9 @@ std::list<BlackCard *> *DeckBuilder::createDynastyDeck()
 		black->push_back(new CrystalMine("Ichinokawa Crystal Mine"));
 	for (i = 0; i < NO_SOLO; i++)
 		black->push_back(new GiftsandFavour("Gifts and Favors"));
-
+	
 	deckShuffler(black);
+	
 	return black;
 }
 

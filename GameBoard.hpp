@@ -3,6 +3,7 @@
 
 #include "Card.hpp"
 #include "Player.hpp"
+#include "Phases.hpp"
 
 class GameBoard{
   private:
@@ -12,10 +13,9 @@ class GameBoard{
     ~GameBoard();
     void initializeGameBoard(int);
     void printGameStatistics();
-    void gameplay();
+    void gameplay(int);
     void sortplayers(int);
+    Player* get_players();
 };
-
-bool compareHonours(int , int);
 
 #endif

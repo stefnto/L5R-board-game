@@ -1,13 +1,17 @@
 #ifndef _PHASES_HPP_
 #define _PHASES_HPP_
 
+#include "DeckBuilder.hpp"
+#include "Player.hpp"
+#include "Card.hpp"
+
 class startingPhase{
   public:
-    void untapEverything();
-    void drawFateCard();
-    void revealProvinces();
-    void printHand();
-    void printProvinces();
+    void untapEverything(Player&);
+    void drawFateCard(Player&);
+    void revealProvinces(Player&);
+    void printHand(Player&);
+    void printProvinces(Player&);
 };
 
 class equipPhase{
