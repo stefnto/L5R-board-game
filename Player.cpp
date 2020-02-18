@@ -49,7 +49,7 @@ void Player::RevealPro(){
 
 void Player::printprovinces(){
   for (unsigned int i=0; i<provinces.size(); i++)
-    cout << provinces[i]->getName() << "  ";
+    cout << provinces[i]->getName() << " | ";
   cout << endl;
 }
 

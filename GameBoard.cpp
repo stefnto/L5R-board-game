@@ -49,8 +49,8 @@ Player* GameBoard::get_players(){
 
 void GameBoard::gameplay(int k){
   startingPhase* start = new startingPhase();
-  // for (int i=0; i<k; i++)
-  // start->printProvinces(players[i]);
+   for (int i=0; i<k; i++)
+   start->printProvinces(players[i]);
   for (int i=0; i<k; i++){
    start->untapEverything(players[i]);
  }

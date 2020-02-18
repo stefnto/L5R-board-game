@@ -13,6 +13,7 @@ void startingPhase::revealProvinces(Player& player){
 }
 
 void startingPhase::printProvinces(Player& player){
+  cout << "Printing provinces: " ;
   player.printprovinces();
 }
 
@@ -25,5 +26,6 @@ void startingPhase::untapEverything(Player& player){
 
 
 void startingPhase::printHand(Player& player){
+  cout << "Printing hand: ";
   player.printhand();
 }
