@@ -41,7 +41,6 @@ CrystalMine::CrystalMine(std::string name){
 }
 
 Stronghold::Stronghold(std::string name,int k){
-  srand(unsigned(time(NULL)));
   honour = rand()%k;
   initialDefense = 5;
   money = 5;
