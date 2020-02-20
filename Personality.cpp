@@ -1,7 +1,27 @@
 #include "Personality.hpp"
 
+using namespace std;
+
 Personality::Personality(){
   isDead = 0; //the card is alive
+}
+
+void Personality::getFollower(GreenCard*& card){
+  if (follower.size() < 3)
+    follower.emplace_back(card); //adds GreenCard to the Followers list
+  else
+    cout << "Personality has maximum followers" << endl;
+}
+
+void Personality::getItem(GreenCard*& card){
+  if (item.size() < 4)
+    item.emplace_back(card); //adds GreenCard to the Items list
+  else
+    cout << "Personality has maximum items" << endl;
+}
+
+int Personality::getHonour(){
+  return honour;
 }
 
 Attacker::Attacker(std::string name){

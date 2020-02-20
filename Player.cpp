@@ -2,13 +2,14 @@
 
 using namespace std;
 
-Player::Player(){
+Player::Player():numberOfProvinces(4), isDead(0), money(10)
+  { //money to be changed
   std::cout << "Player created\n";
-  numberOfProvinces = 4;
+  //numberOfProvinces = 4;
   deck = new DeckBuilder();
   deck->createFateDeck();
   deck->createDynastyDeck();
-  isDead = 0; //he's alive
+  //isDead = 0; //he's alive
 }
 
 Player::~Player(){
@@ -73,7 +74,51 @@ void Player::unTappProvinces(){
 
 void Player::printhand(){
   for (unsigned int i=0; i< hand.size(); i++){
-    cout << hand[i]->getName() << " | ";
+    cout << hand[i]->getName() << "(" << hand[i]->getCost() << ")" << " | ";
   }
   cout << endl;
+}
+
+void Player::printPersonalities(){
+  if (activePersonalities.size()!= 0){
+    for (unsigned int i=0; i<activePersonalities.size(); i++){
+      cout << activePersonalities[i].getName() << " | ";
+    }
+    cout << endl;
+  }
+  else
+    cout << "Player has no active Personalities" << endl;
+}
+
+int Player::GetPersonSize(){
+  return activePersonalities.size();
+}
+
+int Player::GetHandSize(){
+  return hand.size();
+}
+
+void Player::BuyGreenCard(int n1, int n2){
+  int type, honour, minHon; //minHon is minimumHonour
+  if (money >= hand[n1]->getCost()){
+    type = hand[n1]->type();
+    honour = activePersonalities[n2].getHonour();
+    minHon = hand[n1]->getMinHonour();
+    if (type==0){ //means card is a Follower
+      if (honour >= minHon){
+        activePersonalities[n2].getFollower(hand[n1]); //adds to followers of personality
+        hand.erase(hand.begin()+n1); //erases from the hand
+      }
+    } else if (type==1){//means card is an item
+      if (honour >= minHon){
+        activePersonalities[n2].getItem(hand[n1]); //adds to items of personality
+        hand.erase(hand.begin()+n1); //erases from the hand
+      }
+    }
+    money = money - hand[n1]->getCost();
+  }
+}
+
+int Player::getMoney(){
+  return money;
 }

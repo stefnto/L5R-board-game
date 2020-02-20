@@ -11,10 +11,13 @@ class Personality: public BlackCard{
     int defense;
     int honour;
     bool isDead;
-    Follower* follower;
-    Item* item;
+    std::vector<GreenCard *> follower; //max followers 3
+    std::vector<GreenCard *> item; //max items 4
   public:
     Personality();
+    void getFollower(GreenCard*&); //used in Equip Phase
+    void getItem(GreenCard*&);
+    int getHonour();
     // ~Personality();
 };
 

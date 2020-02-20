@@ -14,10 +14,24 @@ void Card::Tapp(){
   isTapped = true;
 }
 
-GreenCard::GreenCard(){} //we dont need to write anything because the stats are different in each type
+GreenCard::GreenCard(){
+  isFollower = false;
+  isItem = false;
+}
 
 void GreenCard::EnableEffectBonus(int){
 
+}
+
+int GreenCard::type(){
+    if (isFollower == true)
+      return 0;
+    else if (isItem == true)
+      return 1;
+}
+
+int GreenCard::getMinHonour(){
+  return minimumHonour;
 }
 
 BlackCard::BlackCard(){
@@ -34,4 +48,8 @@ void BlackCard::Hide(){
 
 std::string Card::getName(){
   return this->name;
+}
+
+int Card::getCost(){
+  return this->cost;
 }

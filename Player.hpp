@@ -15,6 +15,7 @@ class Player{
     bool isDead;
     Stronghold* stronghold;
     std::vector<BlackCard *> provinces;
+    int money; //to be changed
   public:
       Player();
       ~Player();
@@ -30,6 +31,11 @@ class Player{
       void unTappPersonalities();
       void unTappProvinces();
       void printhand();
+      void printPersonalities();
+      int GetPersonSize(); //returns activePersonalities' vector size
+      int GetHandSize();
+      void BuyGreenCard(int, int);
+      int getMoney();
 };
 
 

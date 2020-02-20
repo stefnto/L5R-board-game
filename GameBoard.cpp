@@ -49,12 +49,19 @@ Player* GameBoard::get_players(){
 
 void GameBoard::gameplay(int k){
   startingPhase* start = new startingPhase();
-   for (int i=0; i<k; i++)
-   start->printProvinces(players[i]);
+  equipPhase* equip = new equipPhase();
+  cout << endl;
   for (int i=0; i<k; i++){
-   start->untapEverything(players[i]);
- }
- for (int j=0; j<k; j++){
-   start->printHand(players[j]);
+  //Starting Phase
+    start->untapEverything(players[i]);
+    start->drawFateCard(players[i]);
+    start->revealProvinces(players[i]);
+    start->printHand(players[i]);
+    start->printProvinces(players[i]);
+  //Equip phase
+  equip->Equip(players[i]);
+
+
+  cout << endl;
  }
 }

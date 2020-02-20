@@ -1,6 +1,8 @@
 #include "Follower.hpp"
 
-Follower::Follower(){}
+Follower::Follower(){
+  GreenCard::isFollower = true;
+}
 
 Footsoldier::Footsoldier(std::string name){ //xreiazomaste kai deytero orisma to opoio tha einai enumeration opws leei sthn 3.1
   this->name = name;

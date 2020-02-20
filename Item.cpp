@@ -1,6 +1,8 @@
 #include "Item.hpp"
 
-Item::Item(){}
+Item::Item(){
+  GreenCard::isItem = true;
+}
 
 Katana::Katana(std::string name){
   this->name = name;
