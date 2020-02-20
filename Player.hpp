@@ -36,6 +36,7 @@ class Player{
       int GetHandSize();
       void BuyGreenCard(int, int);
       int getMoney();
+      void giveMoney();
 };
 
 

@@ -2,7 +2,7 @@
 
 using namespace std;
 
-Player::Player():numberOfProvinces(4), isDead(0), money(10)
+Player::Player():numberOfProvinces(4), isDead(0)
   { //money to be changed
   std::cout << "Player created\n";
   //numberOfProvinces = 4;
@@ -121,4 +121,8 @@ void Player::BuyGreenCard(int n1, int n2){
 
 int Player::getMoney(){
   return money;
+}
+
+void Player::giveMoney(){
+  this->money = stronghold->getMoney();
 }

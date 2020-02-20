@@ -21,6 +21,7 @@ void GameBoard::initializeGameBoard(int k){ //k is the number of the players
     string string1 = "Player" + to_string(i+1) + " Stronghold";
     Stronghold* stronghold = new Stronghold(string1, k);
     players[i].addStronghold(stronghold);//Function addHolding() here adds the Stronghold of each player
+    players[i].giveMoney();
     for (int j=0; j<4; j++)
       players[i].GetProvince();
   }

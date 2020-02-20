@@ -49,3 +49,7 @@ Stronghold::Stronghold(std::string name,int k){
 int Stronghold::getHonour(){
   return honour;
 }
+
+int Stronghold::getMoney(){
+  return money;
+}
