@@ -53,8 +53,8 @@ void Player::RevealPro(){
 void Player::printprovinces(){
   for (unsigned int i=0; i<provinces.size(); i++){
     cout << provinces[i]->getName() << " | ";
-    if (provinces[i]->getType() == PERSONALITY)
-      cout << provinces[i]->getInitialDefense() << "| ";
+//     if (provinces[i]->getType() == PERSONALITY)
+//       cout << provinces[i]->getInitialDefense() << "| ";
   }
   cout << endl;
 }
