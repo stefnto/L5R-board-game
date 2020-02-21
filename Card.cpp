@@ -76,5 +76,5 @@ int GreenCard::getType(){
       return ITEM;
 }
 
-int BlackCard::getDefense(){return 0;}
-void BlackCard::setDefense(int num){}
+int BlackCard::getInitialDefense(){return 0;}
+void BlackCard::setInitialDefense(int num){}

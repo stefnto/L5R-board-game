@@ -57,8 +57,8 @@ class BlackCard: public Card{
     void Reveal();
     void Hide();
     int getType();
-    virtual int getDefense();
-    virtual void setDefense(int);
+    virtual int getInitialDefense();
+    virtual void setInitialDefense(int);
 };
 
 #endif

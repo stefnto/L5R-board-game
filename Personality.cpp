@@ -69,6 +69,6 @@ int Personality::getDefense(){
   return defense;
 }
 
-void Personality::setDefense(int num){
-  this->defense = num;
+void Personality::setInitialDefense(int num){
+   initialDefense = num;
 }

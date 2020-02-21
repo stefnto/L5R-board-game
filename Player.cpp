@@ -54,7 +54,7 @@ void Player::printprovinces(){
   for (unsigned int i=0; i<provinces.size(); i++){
     cout << provinces[i]->getName() << " | ";
     if (provinces[i]->getType() == PERSONALITY)
-      cout << provinces[i]->getDefense() << "| ";
+      cout << provinces[i]->getInitialDefense() << "| ";
   }
   cout << endl;
 }
@@ -138,8 +138,8 @@ void Player::giveMoney(){
 
 void Player::giveInitialDefense(BlackCard*& black){
   if (black->getType() == PERSONALITY){
-    int num = black->getDefense() + this->stronghold->getInitialDefense();
-    black->setDefense(num);
+    int num = this->stronghold->getInitialDefense();
+    black->setInitialDefense(num);
   }
 }
 
@@ -155,4 +155,8 @@ void Player::EnableBonus(GreenCard*& card, int n2){ //activePersonalities[n2] is
           cout << "effectBonus cannot be applied due to money inefficiency!\n";
   } else
       cout << "effectBonus won't be enabled" << endl;
+}
+
+int Personality::getInitialDefense(){
+  return initialDefense;
 }
