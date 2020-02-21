@@ -19,8 +19,14 @@ GreenCard::GreenCard(){
   isItem = false;
 }
 
-void GreenCard::EnableEffectBonus(int){
-
+void GreenCard::EnableEffectBonus(){
+  // if(player.getMoney() >= effectCost){
+  //   attackBonus += effectBonus;
+  //   player.getMoney() -= effectCost;
+  //   cout << "effectBonus has been applied!\n";
+  // }
+  // else
+  //   cout << "effectBonus cannot be applied!\n";
 }
 
 int GreenCard::type(){

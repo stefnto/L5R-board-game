@@ -38,7 +38,7 @@ class GreenCard : public Card{
   public:
     GreenCard();
     // ~GreenCard();
-    void EnableEffectBonus(int);
+    void EnableEffectBonus();
     int type(); //return 0 if card is follower, 1 if card is item
     int getMinHonour();
 };
