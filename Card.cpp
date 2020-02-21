@@ -27,16 +27,16 @@ void GreenCard::EnableEffectBonus(){
   cin >> bonus;
   if (bonus==1)
     attackBonus += effectBonus;
-  else if (bonus==2)
+  else
       defenseBonus += effectBonus;
   cout << "effectBonus has been applied!\n";
 }
 
-int GreenCard::type(){
+int GreenCard::getType(){
     if (isFollower == true)
-      return 0;
-    else if (isItem == true)
-      return 1;
+      return FOLLOWER;
+    else
+      return ITEM;
 }
 
 int GreenCard::getMinHonour(){
@@ -53,10 +53,19 @@ BlackCard::BlackCard(){
 
 void BlackCard::Reveal(){
   isRevealed = true;
+  isPersonality = false;
+  isHolding = false;
 }
 
 void BlackCard::Hide(){
   isRevealed = false;
+}
+
+int BlackCard::getType(){
+  if (isPersonality == true)
+    return PERSONALITY;
+  else
+    return HOLDING;
 }
 
 std::string Card::getName(){

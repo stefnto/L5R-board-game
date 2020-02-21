@@ -2,7 +2,9 @@
 #include <ctime>
 #include <cstdlib>
 
-Holding::Holding(){}
+Holding::Holding(){
+  BlackCard::isHolding = true;
+}
 
 GiftsandFavour::GiftsandFavour(std::string name){
   this->name = name;

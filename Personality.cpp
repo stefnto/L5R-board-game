@@ -3,6 +3,7 @@
 using namespace std;
 
 Personality::Personality(){
+  BlackCard::isPersonality = true;
   isDead = 0; //the card is alive
 }
 
