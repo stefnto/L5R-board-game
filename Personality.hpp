@@ -18,6 +18,7 @@ class Personality: public BlackCard{
     void getFollower(GreenCard*&); //used in Equip Phase
     void getItem(GreenCard*&);
     int getHonour();
+    void EnableEffectBonus(GreenCard*&);
     // ~Personality();
 };
 

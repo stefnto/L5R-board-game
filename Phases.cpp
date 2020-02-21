@@ -50,5 +50,4 @@ void equipPhase::BuyAndPlace(Player& player){
   cout << "Choose personality to apply the Green Card to(1 to " << player.GetPersonSize() << "):";
   cin >> n2;
   player.BuyGreenCard(n1-1, n2-1);
-
 }

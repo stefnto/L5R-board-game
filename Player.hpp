@@ -37,6 +37,7 @@ class Player{
       void BuyGreenCard(int, int);
       int getMoney();
       void giveMoney();
+      void EnableBonus(GreenCard*&, int );
 };
 
 

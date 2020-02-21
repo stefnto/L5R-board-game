@@ -41,6 +41,7 @@ class GreenCard : public Card{
     void EnableEffectBonus();
     int type(); //return 0 if card is follower, 1 if card is item
     int getMinHonour();
+    int getEffectCost();
 };
 
 class BlackCard: public Card{

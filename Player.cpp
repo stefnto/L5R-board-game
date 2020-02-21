@@ -101,21 +101,25 @@ int Player::GetHandSize(){
 void Player::BuyGreenCard(int n1, int n2){
   int type, honour, minHon; //minHon is minimumHonour
   if (money >= hand[n1]->getCost()){
+    money = money - hand[n1]->getCost();
     type = hand[n1]->type();
     honour = activePersonalities[n2].getHonour();
     minHon = hand[n1]->getMinHonour();
     if (type==0){ //means card is a Follower
       if (honour >= minHon){
+        this->EnableBonus(hand[n1], n2);
         activePersonalities[n2].getFollower(hand[n1]); //adds to followers of personality
+        cout << "Follower added to active Personality" << endl;
         hand.erase(hand.begin()+n1); //erases from the hand
       }
     } else if (type==1){//means card is an item
       if (honour >= minHon){
+        this->EnableBonus(hand[n1], n2);
         activePersonalities[n2].getItem(hand[n1]); //adds to items of personality
+        cout << "Item added to active Personality" << endl;
         hand.erase(hand.begin()+n1); //erases from the hand
       }
     }
-    money = money - hand[n1]->getCost();
   }
 }
 
@@ -125,4 +129,18 @@ int Player::getMoney(){
 
 void Player::giveMoney(){
   this->money = stronghold->getMoney();
+}
+
+void Player::EnableBonus(GreenCard*& card, int n2){ //activePersonalities[n2] is the Personality that's to get the bonuses
+  int enable;
+  cout << "Enable GreenCard's bonus efects?(type 1 for yes, 0 for no):";
+  cin >> enable;
+  cout << endl;
+  if (enable==1){
+      if (money >= card->getEffectCost()){
+          card->EnableEffectBonus();
+      } else
+          cout << "effectBonus cannot be applied due to money inefficiency!\n";
+  } else
+      cout << "effectBonus won't be enabled" << endl;
 }

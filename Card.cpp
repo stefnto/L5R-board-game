@@ -1,6 +1,8 @@
 #include "Card.hpp"
 #include <string>
 
+using namespace std;
+
 Card::Card(){
     unTapp();
    //the card is untapped
@@ -20,13 +22,14 @@ GreenCard::GreenCard(){
 }
 
 void GreenCard::EnableEffectBonus(){
-  // if(player.getMoney() >= effectCost){
-  //   attackBonus += effectBonus;
-  //   player.getMoney() -= effectCost;
-  //   cout << "effectBonus has been applied!\n";
-  // }
-  // else
-  //   cout << "effectBonus cannot be applied!\n";
+  int bonus;
+  cout << "Press 1 to upgrade attack, 0 to upgrade defense:";
+  cin >> bonus;
+  if (bonus==1)
+    attackBonus += effectBonus;
+  else if (bonus==2)
+      defenseBonus += effectBonus;
+  cout << "effectBonus has been applied!\n";
 }
 
 int GreenCard::type(){
@@ -38,6 +41,10 @@ int GreenCard::type(){
 
 int GreenCard::getMinHonour(){
   return minimumHonour;
+}
+
+int GreenCard::getEffectCost(){
+  return effectCost;
 }
 
 BlackCard::BlackCard(){
