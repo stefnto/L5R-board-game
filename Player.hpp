@@ -4,6 +4,7 @@
 #include "DeckBuilder.hpp"
 #include <vector>
 #include <list>
+#include "Card.hpp"
 
 class Player{
   private:

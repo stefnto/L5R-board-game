@@ -32,13 +32,6 @@ void GreenCard::EnableEffectBonus(){
   cout << "effectBonus has been applied!\n";
 }
 
-int GreenCard::type(){
-    if (isFollower == true)
-      return 0;
-    else if (isItem == true)
-      return 1;
-}
-
 int GreenCard::getMinHonour(){
   return minimumHonour;
 }
@@ -50,6 +43,8 @@ int GreenCard::getEffectCost(){
 BlackCard::BlackCard(){
   Hide(); //the card is hidden
 }
+
+BlackCard::~BlackCard(){}
 
 void BlackCard::Reveal(){
   isRevealed = true;
@@ -81,5 +76,5 @@ int GreenCard::getType(){
       return ITEM;
 }
 
-int BlackCard::getDefense(){}
- void BlackCard::setDefense(int num){}
+int BlackCard::getDefense(){return 0;}
+void BlackCard::setDefense(int num){}
