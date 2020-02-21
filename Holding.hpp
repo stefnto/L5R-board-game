@@ -59,6 +59,7 @@ class Stronghold : public BlackCard{
     // ~Stronghold();
     int getHonour();
     int getMoney();
+    int getInitialDefense();
 };
 
 #endif

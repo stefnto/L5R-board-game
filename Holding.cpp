@@ -3,7 +3,7 @@
 #include <cstdlib>
 
 Holding::Holding(){
-  BlackCard::isHolding = true;
+  BlackCard::isHolding=true;
 }
 
 GiftsandFavour::GiftsandFavour(std::string name){
@@ -54,4 +54,8 @@ int Stronghold::getHonour(){
 
 int Stronghold::getMoney(){
   return money;
+}
+
+int Stronghold::getInitialDefense(){
+  return initialDefense;
 }

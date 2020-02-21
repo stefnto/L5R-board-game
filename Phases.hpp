@@ -18,11 +18,13 @@ class equipPhase{
   public:
     void Equip(Player&);
     void BuyAndPlace(Player&);
-    //void EnableBonus(Player&);
 };
 
 class battlePhase{
-
+  public:
+    void Battle();
+    void attack();
+    void defend();
 };
 
 class economyPhase{

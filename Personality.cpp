@@ -3,8 +3,8 @@
 using namespace std;
 
 Personality::Personality(){
-  BlackCard::isPersonality = true;
   isDead = 0; //the card is alive
+  BlackCard::isPersonality=true;
 }
 
 void Personality::getFollower(GreenCard*& card){
@@ -63,4 +63,12 @@ Champion::Champion(std::string name){
   attack = 20;
   defense = 20;
   honour = 12;
+}
+
+int Personality::getDefense(){
+  return defense;
+}
+
+void Personality::setDefense(int num){
+  this->defense = num;
 }

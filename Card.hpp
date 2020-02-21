@@ -5,12 +5,13 @@
 #include <iostream>
 #include <string>
 #include <vector>
+enum Cards{PERSONALITY = 1, HOLDING, FOLLOWER, ITEM};
+
 //apo 3.1 ayta ta enumerations tha xreiastoun
 enum Personalities{ATTACKER, DEFENDER, SHOGUN, CHANCELLOR, CHAMPION};
 enum Holdings{PLAIN, MINE, GOLD_MINE, CRYSTAL_MINE, FARMS, SOLO, STRONGHOLD};
 enum Followers{FOOTSOLDIER, ARCHER, SIEGER, CAVALRY, NAVAL, BUSHIDO};
 enum Items{KATANA, SPEAR, BOW, NINJATO, WAKIZASHI};
-enum Cards{PERSONALITY = 1, HOLDING, FOLLOWER, ITEM};
 
 class Card{
   protected:
@@ -24,7 +25,6 @@ class Card{
      void Tapp();
      std::string getName();
      int getCost();
-     //virtual int getType() = 0;
 };
 
 class GreenCard : public Card{
@@ -41,22 +41,25 @@ class GreenCard : public Card{
     GreenCard();
     // ~GreenCard();
     void EnableEffectBonus();
-    int getType(); //return 3 if card is follower, 4 if card is item
+    int type(); //return 0 if card is follower, 1 if card is item
     int getMinHonour();
     int getEffectCost();
+    int getType();
 };
 
 class BlackCard: public Card{
   protected:
     bool isRevealed;
-    bool isPersonality;
     bool isHolding;
+    bool isPersonality;
   public:
     BlackCard();
     // ~BlackCard();
     void Reveal();
     void Hide();
     int getType();
+    virtual int getDefense();
+    virtual void setDefense(int);
 };
 
 #endif

@@ -31,7 +31,9 @@ void Player::addStronghold(Stronghold*& stronghold){
 }
 
 void Player::GetProvince(){
-  provinces.push_back(deck->getLastBlackCard());
+  BlackCard* black = deck->getLastBlackCard();//
+  provinces.push_back(black);
+  giveInitialDefense(black);
   deck->deleteLastBlackCard();
 }
 
@@ -49,8 +51,11 @@ void Player::RevealPro(){
 }
 
 void Player::printprovinces(){
-  for (unsigned int i=0; i<provinces.size(); i++)
+  for (unsigned int i=0; i<provinces.size(); i++){
     cout << provinces[i]->getName() << " | ";
+    if (provinces[i]->getType() == PERSONALITY)
+      cout << provinces[i]->getDefense() << "| ";
+  }
   cout << endl;
 }
 
@@ -102,17 +107,17 @@ void Player::BuyGreenCard(int n1, int n2){
   int type, honour, minHon; //minHon is minimumHonour
   if (money >= hand[n1]->getCost()){
     money = money - hand[n1]->getCost();
-    type = hand[n1]->getType();
+    type = hand[n1]->type();
     honour = activePersonalities[n2].getHonour();
     minHon = hand[n1]->getMinHonour();
-    if (type==3){ //means card is a Follower
+    if (type==0){ //means card is a Follower
       if (honour >= minHon){
         this->EnableBonus(hand[n1], n2);
         activePersonalities[n2].getFollower(hand[n1]); //adds to followers of personality
         cout << "Follower added to active Personality" << endl;
         hand.erase(hand.begin()+n1); //erases from the hand
       }
-    } else if (type==4){//means card is an item
+    } else if (type==1){//means card is an item
       if (honour >= minHon){
         this->EnableBonus(hand[n1], n2);
         activePersonalities[n2].getItem(hand[n1]); //adds to items of personality
@@ -129,6 +134,13 @@ int Player::getMoney(){
 
 void Player::giveMoney(){
   this->money = stronghold->getMoney();
+}
+
+void Player::giveInitialDefense(BlackCard*& black){
+  if (black->getType() == PERSONALITY){
+    int num = black->getDefense() + this->stronghold->getInitialDefense();
+    black->setDefense(num);
+  }
 }
 
 void Player::EnableBonus(GreenCard*& card, int n2){ //activePersonalities[n2] is the Personality that's to get the bonuses

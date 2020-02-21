@@ -38,6 +38,7 @@ class Player{
       int getMoney();
       void giveMoney();
       void EnableBonus(GreenCard*&, int );
+      void giveInitialDefense(BlackCard*&);
 };
 
 

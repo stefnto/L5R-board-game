@@ -5,7 +5,6 @@
 #include "Personality.hpp"
 #include "Holding.hpp"
 #include "Follower.hpp"
-#include "Follower.hpp"
 #include "Item.hpp"
 
 class TypeConverter{
