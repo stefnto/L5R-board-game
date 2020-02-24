@@ -34,11 +34,12 @@ class Player{
       void printPersonalities();
       int GetPersonSize(); //returns activePersonalities' vector size
       int GetHandSize(); //returns number of GreenCards in hand
-      void BuyGreenCard(int, int);
+      void BuyGreenCard(int, int); //used in equipPhase
       int getMoney();
       void giveMoney();
       void EnableBonus(GreenCard*&, int );
       void giveInitialDefense(BlackCard*&);
+      void BuyProvince(int); //used in economyPhase
 };
 
 

@@ -4,6 +4,8 @@
 
 Holding::Holding(){
   BlackCard::isHolding=true;
+  upperHolding = nullptr;
+  subHolding = nullptr;
 }
 
 GiftsandFavour::GiftsandFavour(std::string name){

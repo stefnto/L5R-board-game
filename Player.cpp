@@ -1,4 +1,5 @@
 #include "Player.hpp"
+#include "TypeConverter.hpp"
 
 using namespace std;
 
@@ -52,7 +53,7 @@ void Player::RevealPro(){
 
 void Player::printprovinces(){
   for (unsigned int i=0; i<provinces.size(); i++){
-    cout << provinces[i]->getName() << " | ";
+    cout << provinces[i]->getName() << "(" << provinces[i]->getCost() << ")" <<" | ";
 //     if (provinces[i]->getType() == PERSONALITY)
 //       cout << provinces[i]->getInitialDefense() << "| ";
   }
@@ -157,6 +158,23 @@ void Player::EnableBonus(GreenCard*& card, int n2){ //activePersonalities[n2] is
       cout << "effectBonus won't be enabled" << endl;
 }
 
-int Personality::getInitialDefense(){
-  return initialDefense;
+void Player::BuyProvince(int n1){
+  TypeConverter converter;
+  BlackCard* black = provinces[n1];
+  Personality* person;
+  Holding* holding;
+  converter.getCorrectType(black, &person, &holding);
+  if (person!=NULL){
+    if (money >= person->getCost()){ //player can buy the personality
+      activePersonalities.emplace_back(*person);
+      provinces.erase(provinces.begin()+n1); //erases from the provinces
+      this->GetProvince(); //gets another province (not revealed)
+    }
+  } else if (holding!=NULL){
+    if (money >= holding->getCost()){ //player can buy the holding
+      holdings.emplace_back(*holding);
+      provinces.erase(provinces.begin()+n1); //erases from the provinces
+      this->GetProvince(); //gets another province (not revealed)
+    }
+  }
 }

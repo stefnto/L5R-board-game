@@ -28,7 +28,8 @@ class battlePhase{
 };
 
 class economyPhase{
-
+  public:
+    void Economy(Player&);
 };
 
 class finalPhase{

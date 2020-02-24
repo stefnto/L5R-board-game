@@ -25,6 +25,10 @@ int Personality::getHonour(){
   return honour;
 }
 
+int Personality::getInitialDefense(){
+  return initialDefense;
+}
+
 Attacker::Attacker(std::string name){
   this->name = name;
   cost = 5;

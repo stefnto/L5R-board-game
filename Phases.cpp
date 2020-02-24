@@ -72,3 +72,18 @@ void battlePhase::Attack(Player&){
 void battlePhase::Defend(Player&){
 
 }
+
+
+void economyPhase::Economy(Player& player){
+  player.printprovinces();
+  bool buy;
+  int n1;
+  cout << "Do you want to buy a BlackCard?";
+  cin >> buy;
+  if (buy==true){
+    cout << "Choose a card to buy(writing the number of its place in the order shown, 1 to 4):";
+    cin >> n1;
+    player.BuyProvince(n1-1);
+  } else
+      cout << "Continuing to next player" << endl;
+}

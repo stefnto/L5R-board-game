@@ -20,12 +20,12 @@ void GameBoard::initializeGameBoard(int k){ //k is the number of the players
       players[i].GetGreenCard();
     string string1 = "Player" + to_string(i+1) + " Stronghold";
     Stronghold* stronghold = new Stronghold(string1, k);
-    players[i].addStronghold(stronghold);//Function addHolding() here adds the Stronghold of each player
-    players[i].giveMoney();
+    players[i].addStronghold(stronghold);//Function addStronghold() here adds the Stronghold of each player
+    players[i].giveMoney(); //Gives starting money to the player
     for (int j=0; j<4; j++)
       players[i].GetProvince();
   }
-  sortplayers(k);
+  sortplayers(k); //sorts players in descending order
   cout << k << " players are playing the game!" << endl;
 }
 
@@ -62,7 +62,7 @@ void GameBoard::gameplay(int k){
   //Equip phase
     equip->Equip(players[i]);
   //Battle phase
-    
+
 
   cout << endl;
  }
