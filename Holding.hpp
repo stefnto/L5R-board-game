@@ -6,10 +6,13 @@
 class Holding: public BlackCard{
   protected:
     int harvestValue;
+    int initialDefense;
     Holding* upperHolding;
     Holding* subHolding;
   public:
     Holding();
+    void setInitialDefense(int);
+    int getInitialDefense();
     // ~Holding();
 };
 

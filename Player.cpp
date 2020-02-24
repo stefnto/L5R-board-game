@@ -52,8 +52,6 @@ void Player::RevealPro(){
 void Player::printprovinces(){
   for (unsigned int i=0; i<provinces.size(); i++){
     cout << provinces[i]->getName() << "(" << provinces[i]->getCost() << ")" <<" | ";
-//     if (provinces[i]->getType() == PERSONALITY)
-//       cout << provinces[i]->getInitialDefense() << "| ";
   }
   cout << endl;
 }
@@ -182,4 +180,8 @@ void Player::BuyProvince(int n1){
       } else cout << "Not enough money to buy this card" << endl;
     }
   } else cout << "Card is not revealed-cannot be bought this round" << endl;
+}
+
+void Player::discardfromHand(int discard){
+  hand.erase(hand.begin()+discard);
 }

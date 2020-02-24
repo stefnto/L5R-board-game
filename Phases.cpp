@@ -72,7 +72,6 @@ void battlePhase::Defend(Player&){
 
 }
 
-
 void economyPhase::Economy(Player& player){
   cout << "Printing provinces: " ;
   player.printprovinces();
@@ -91,5 +90,17 @@ void economyPhase::Economy(Player& player){
       cin >> n1;
     }
   } else
-      cout << "Continuing to next player" << endl;
+      cout << "Continuing to next player\n" << endl;
+}
+
+void finalPhase::discardSurplusFateCards(Player& player){
+  if (player.GetHandSize() > MAX_GREEN_CARDS){
+    while (player.GetHandSize() <= MAX_GREEN_CARDS){
+      cout << "Choose a card to discard" << endl;
+      player.printhand();
+      int discard;
+      cin >> discard;
+      player.discardfromHand(discard-1);
+    }
+  }
 }

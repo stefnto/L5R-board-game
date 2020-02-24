@@ -61,3 +61,11 @@ int Stronghold::getMoney(){
 int Stronghold::getInitialDefense(){
   return initialDefense;
 }
+
+void Holding::setInitialDefense(int num){
+   initialDefense = num;
+}
+
+int Holding::getInitialDefense(){
+  return initialDefense;
+}

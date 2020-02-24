@@ -5,6 +5,8 @@
 #include <vector>
 #include <list>
 
+#define MAX_GREEN_CARDS 6
+
 class Player{
   private:
     DeckBuilder* deck;
@@ -40,6 +42,7 @@ class Player{
       void EnableBonus(GreenCard*&, int );
       void giveInitialDefense(BlackCard*&);
       void BuyProvince(int); //used in economyPhase
+      void discardfromHand(int); //used in finalPhase
 };
 
 
