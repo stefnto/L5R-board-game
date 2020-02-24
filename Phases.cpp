@@ -78,12 +78,18 @@ void economyPhase::Economy(Player& player){
   player.printprovinces();
   bool buy;
   int n1;
-  cout << "Do you want to buy a BlackCard?";
+  cout << "Do you want to buy a BlackCard?(1-yes 0-no)";
   cin >> buy;
   if (buy==true){
-    cout << "Choose a card to buy(writing the number of its place in the order shown, 1 to 4):";
+    cout << "Money = " << player.getMoney() << endl;
+    cout << "Choose a card to buy(writing the number of its place in the order shown, 1 to 4, 0 to exit):";
     cin >> n1;
-    player.BuyProvince(n1-1);
+    while (n1!=0){
+      player.BuyProvince(n1-1);
+      cout << "Money = " << player.getMoney() << ", buy another card?" << endl;
+      player.printprovinces();
+      cin >> n1;
+    }
   } else
       cout << "Continuing to next player" << endl;
 }

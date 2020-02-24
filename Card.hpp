@@ -55,6 +55,7 @@ class BlackCard: public Card{
     BlackCard();
     virtual ~BlackCard();
     void Reveal();
+    int Revealed(); //returns 1 if card is revealed
     void Hide();
     int getType();
     virtual int getInitialDefense();

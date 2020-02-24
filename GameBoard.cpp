@@ -51,6 +51,8 @@ Player* GameBoard::get_players(){
 void GameBoard::gameplay(int k){
   startingPhase* start = new startingPhase();
   equipPhase* equip = new equipPhase();
+  battlePhase* battle = new battlePhase();
+  economyPhase* economy = new economyPhase();
   cout << endl;
   for (int i=0; i<k; i++){
   //Starting Phase
@@ -63,6 +65,8 @@ void GameBoard::gameplay(int k){
     equip->Equip(players[i]);
   //Battle phase
 
+  //Economy phase
+    economy->Economy(players[i]);
 
   cout << endl;
  }

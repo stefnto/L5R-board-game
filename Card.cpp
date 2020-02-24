@@ -50,6 +50,12 @@ void BlackCard::Reveal(){
   isRevealed = true;
 }
 
+int BlackCard::Revealed(){
+  if (isRevealed==true)
+    return 1;
+  else return 0;  
+}
+
 void BlackCard::Hide(){
   isRevealed = false;
 }

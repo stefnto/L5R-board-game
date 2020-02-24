@@ -163,18 +163,25 @@ void Player::BuyProvince(int n1){
   BlackCard* black = provinces[n1];
   Personality* person;
   Holding* holding;
-  converter.getCorrectType(black, &person, &holding);
-  if (person!=NULL){
-    if (money >= person->getCost()){ //player can buy the personality
-      activePersonalities.emplace_back(*person);
-      provinces.erase(provinces.begin()+n1); //erases from the provinces
-      this->GetProvince(); //gets another province (not revealed)
+  int revealed = black->Revealed();
+  if (revealed ==1){
+    converter.getCorrectType(black, &person, &holding);
+    if (person!=NULL){
+      if (money >= person->getCost()){ //player can buy the personality
+        money = money - person->getCost();
+        activePersonalities.emplace_back(*person);
+        provinces.erase(provinces.begin()+n1); //erases from the provinces
+        this->GetProvince(); //gets another province (not revealed)
+        cout << "Personality card bought" << endl;
+      } else cout << "Not enough money to buy this card" << endl;
+    } else if (holding!=NULL){
+      if (money >= holding->getCost()){ //player can buy the holding
+        money = money - holding->getCost();
+        holdings.emplace_back(*holding);
+        provinces.erase(provinces.begin()+n1); //erases from the provinces
+        this->GetProvince(); //gets another province (not revealed)
+        cout << "Holding card bought" << endl;
+      } else cout << "Not enough money to buy this card" << endl;
     }
-  } else if (holding!=NULL){
-    if (money >= holding->getCost()){ //player can buy the holding
-      holdings.emplace_back(*holding);
-      provinces.erase(provinces.begin()+n1); //erases from the provinces
-      this->GetProvince(); //gets another province (not revealed)
-    }
-  }
+  } else cout << "Card is not revealed-cannot be bought this round" << endl;
 }
