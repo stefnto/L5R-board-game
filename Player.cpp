@@ -51,7 +51,7 @@ void Player::RevealPro(){
 
 void Player::printprovinces(){
   for (unsigned int i=0; i<provinces.size(); i++){
-    cout << provinces[i]->getName() << "(" << provinces[i]->getCost() << ")" <<" | ";
+    cout << provinces[i]->getName() << "(" << provinces[i]->getCost() << ")" << " | ";
   }
   cout << endl;
 }
@@ -134,10 +134,10 @@ void Player::giveMoney(){
 }
 
 void Player::giveInitialDefense(BlackCard*& black){
-  if (black->getType() == PERSONALITY){
+  // if (black->getType() == PERSONALITY){
     int num = this->stronghold->getInitialDefense();
     black->setInitialDefense(num);
-  }
+  // }
 }
 
 void Player::EnableBonus(GreenCard*& card, int n2){ //activePersonalities[n2] is the Personality that's to get the bonuses
@@ -181,7 +181,6 @@ void Player::BuyProvince(int n1){
     }
   } else cout << "Card is not revealed-cannot be bought this round" << endl;
 }
-
 void Player::discardfromHand(int discard){
   hand.erase(hand.begin()+discard);
 }
