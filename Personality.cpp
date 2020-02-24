@@ -8,14 +8,14 @@ Personality::Personality(){
 }
 
 void Personality::getFollower(GreenCard*& card){
-  if (follower.size() < 3)
+  if (follower.size() < MAX_FOLLOWERS)
     follower.emplace_back(card); //adds GreenCard to the Followers list
   else
     cout << "Personality has maximum followers" << endl;
 }
 
 void Personality::getItem(GreenCard*& card){
-  if (item.size() < 4)
+  if (item.size() < MAX_ITEMS)
     item.emplace_back(card); //adds GreenCard to the Items list
   else
     cout << "Personality has maximum items" << endl;

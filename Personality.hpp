@@ -1,9 +1,13 @@
 #ifndef _PERSONALITY_HPP_
 #define _PERSONALITY_HPP_
 
+
 #include "Card.hpp"
 #include "Follower.hpp"
 #include "Item.hpp"
+
+#define MAX_FOLLOWERS 3
+#define MAX_ITEMS 4
 
 class Personality: public BlackCard{
   protected:

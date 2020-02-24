@@ -33,7 +33,7 @@ class Player{
       void printhand();
       void printPersonalities();
       int GetPersonSize(); //returns activePersonalities' vector size
-      int GetHandSize();
+      int GetHandSize(); //returns number of GreenCards in hand
       void BuyGreenCard(int, int);
       int getMoney();
       void giveMoney();

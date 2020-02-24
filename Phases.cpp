@@ -53,15 +53,22 @@ void equipPhase::BuyAndPlace(Player& player){
 }
 
 void battlePhase::Battle(Player& player){
-  if (player.GetPersonSize()!= 0){
-    
-  }
+  if (player.GetPersonSize()!= 0){ //player has army
+    bool battle;
+    player.printPersonalities();
+    cout << "Do you want to attack a player?";
+    cin >> battle;
+    if (battle==true){
+
+    }
+  } else
+      cout << "Player cannot start a battle due to lack of active Personalities" << endl;
 }
 
-void battlePhase::Attack(){
+void battlePhase::Attack(Player&){
 
 }
 
-void battlePhase::Defend(){
+void battlePhase::Defend(Player&){
 
 }

@@ -14,8 +14,9 @@ using namespace std;
 
 int main(void){
 srand(time(NULL));
-  GameBoard game(5);
-  game.gameplay(5);
+  int players = 3;
+  GameBoard game(players);
+  game.gameplay(players);
 //   Player* arr = game.get_players();
 //
 //   for (int i=0; i<5; i++)

@@ -60,8 +60,9 @@ void GameBoard::gameplay(int k){
     start->printHand(players[i]);
     start->printProvinces(players[i]);
   //Equip phase
-  equip->Equip(players[i]);
-
+    equip->Equip(players[i]);
+  //Battle phase
+    
 
   cout << endl;
  }
