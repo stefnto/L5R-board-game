@@ -51,3 +51,17 @@ void equipPhase::BuyAndPlace(Player& player){
   cin >> n2;
   player.BuyGreenCard(n1-1, n2-1);
 }
+
+void battlePhase::Battle(Player& player){
+  if (player.GetPersonSize()!= 0){
+    
+  }
+}
+
+void battlePhase::Attack(){
+
+}
+
+void battlePhase::Defend(){
+
+}

@@ -23,8 +23,8 @@ class equipPhase{
 class battlePhase{
   public:
     void Battle();
-    void attack();
-    void defend();
+    void Attack();
+    void Defend();
 };
 
 class economyPhase{
