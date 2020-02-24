@@ -5,8 +5,6 @@ using namespace std;
 
 Player::Player():numberOfProvinces(4), isDead(0)
   { //money to be changed
-  std::cout << "Player created\n";
-  //numberOfProvinces = 4;
   deck = new DeckBuilder();
   deck->createFateDeck();
   deck->createDynastyDeck();

@@ -16,7 +16,7 @@ class startingPhase{
 
 class equipPhase{
   public:
-    void Equip(Player&);
+    void Equip(Player&, int);
     void BuyAndPlace(Player&);
 };
 

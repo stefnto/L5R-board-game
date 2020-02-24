@@ -22,7 +22,6 @@ void startingPhase::untapEverything(Player& player){
     player.unTappHoldings();
     player.unTappPersonalities();
     player.unTappProvinces();
-    cout << "Player's cards were untapped" << endl;
 }
 
 
@@ -31,7 +30,7 @@ void startingPhase::printHand(Player& player){
   player.printhand();
 }
 
-void equipPhase::Equip(Player& player){
+void equipPhase::Equip(Player& player, int i){
   if (player.GetPersonSize()!= 0){
     cout << "Available Green cards: ";
     player.printhand();
@@ -40,7 +39,7 @@ void equipPhase::Equip(Player& player){
     BuyAndPlace(player);
   }
   else
-    cout << "Player has no active Personalities" << endl;
+    cout << "Player" << i << " has no active Personalities" << endl;
 }
 
 void equipPhase::BuyAndPlace(Player& player){
@@ -75,6 +74,7 @@ void battlePhase::Defend(Player&){
 
 
 void economyPhase::Economy(Player& player){
+  cout << "Printing provinces: " ;
   player.printprovinces();
   bool buy;
   int n1;

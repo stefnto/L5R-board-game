@@ -11,6 +11,7 @@ GameBoard::GameBoard(int k){
 
 GameBoard::~GameBoard(){
   cout << "GameBoard to be destroyed!\n";
+  delete []players;
 }
 
 void GameBoard::initializeGameBoard(int k){ //k is the number of the players
@@ -54,20 +55,30 @@ void GameBoard::gameplay(int k){
   battlePhase* battle = new battlePhase();
   economyPhase* economy = new economyPhase();
   cout << endl;
-  for (int i=0; i<k; i++){
   //Starting Phase
+  cout << "//////////////////////////////////////////////////Starting Phase//////////////////////////////////////////////////" << endl;
+  for (int i=0; i<k; i++){
+    cout << "Player" << i+1 << ":" << endl;
     start->untapEverything(players[i]);
     start->drawFateCard(players[i]);
     start->revealProvinces(players[i]);
     start->printHand(players[i]);
     start->printProvinces(players[i]);
+    cout << endl;
+  }
   //Equip phase
-    equip->Equip(players[i]);
+  cout << "//////////////////////////////////////////////////Equip Phase//////////////////////////////////////////////////" << endl;
+  for (int i=0; i<k; i++){
+    equip->Equip(players[i], i+1);
+    cout << endl;
+  }
   //Battle phase
+  //cout << "//////////////////////////////////////////////////Battle Phase//////////////////////////////////////////////////" << endl;
 
   //Economy phase
+  cout << "//////////////////////////////////////////////////Economy Phase//////////////////////////////////////////////////" << endl;
+  for (int i=0; i<k; i++){
+    cout << "Player" << i+1 << "'s turn:" << endl;
     economy->Economy(players[i]);
-
-  cout << endl;
- }
+  }
 }
