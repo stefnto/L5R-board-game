@@ -1,4 +1,3 @@
-////////////////CARD////////////////////////
 #ifndef _CARD_HPP_
 #define _CARD_HPP_
 
@@ -23,6 +22,7 @@ class Card{
      // ~Card();
      void unTapp();
      void Tapp();
+     bool istapped();//new function
      std::string getName();
      int getCost();
 };

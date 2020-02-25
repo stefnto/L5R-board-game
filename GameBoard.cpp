@@ -81,4 +81,7 @@ void GameBoard::gameplay(int k){
     cout << "Player" << i+1 << "'s turn:" << endl;
     economy->Economy(players[i]);
   }
+
+  cout << "/////////////////////////////////////////////////Battle Phase////////////////////////////////////////////////////" << endl;
+    battle->Battle(players[0]);
 }

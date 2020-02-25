@@ -8,6 +8,8 @@ Player::Player():numberOfProvinces(4), isDead(0)
   deck = new DeckBuilder();
   deck->createFateDeck();
   deck->createDynastyDeck();
+  overallAttack = 0; //we initiallize it
+  overallDefense = 0;
   //isDead = 0; //he's alive
 }
 
@@ -181,6 +183,28 @@ void Player::BuyProvince(int n1){
     }
   } else cout << "Card is not revealed-cannot be bought this round" << endl;
 }
-void Player::discardfromHand(int discard){
-  hand.erase(hand.begin()+discard);
+
+//new functions
+vector<Personality> Player::getactivePersonalities(){
+  return activePersonalities;
+}
+
+void Player::setOverallAttack(int num){
+  overallAttack += num;
+}
+
+void Player::setOverallDefense(int num){
+  overallDefense += num;
+}
+
+int Player::getOverallAttack(){
+  return overallAttack;
+}
+
+int Player::getOverallDefense(){
+  return overallDefense;
+}
+
+void Player::setTapped(int pos){
+  activePersonalities[pos].Tapp();
 }

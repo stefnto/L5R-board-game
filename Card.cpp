@@ -53,7 +53,7 @@ void BlackCard::Reveal(){
 int BlackCard::Revealed(){
   if (isRevealed==true)
     return 1;
-  else return 0;  
+  else return 0;
 }
 
 void BlackCard::Hide(){
@@ -84,3 +84,7 @@ int GreenCard::getType(){
 
 int BlackCard::getInitialDefense(){return 0;}
 void BlackCard::setInitialDefense(int num){}
+//new function
+bool Card::istapped(){
+  return isTapped;
+}

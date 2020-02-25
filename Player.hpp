@@ -5,8 +5,6 @@
 #include <vector>
 #include <list>
 
-#define MAX_GREEN_CARDS 6
-
 class Player{
   private:
     DeckBuilder* deck;
@@ -18,6 +16,8 @@ class Player{
     Stronghold* stronghold;
     std::vector<BlackCard *> provinces;
     int money; //to be changed
+    int overallAttack;
+    int overallDefense;
   public:
       Player();
       ~Player();
@@ -42,7 +42,12 @@ class Player{
       void EnableBonus(GreenCard*&, int );
       void giveInitialDefense(BlackCard*&);
       void BuyProvince(int); //used in economyPhase
-      void discardfromHand(int); //used in finalPhase
+      std::vector<Personality> getactivePersonalities();
+      void setOverallAttack(int);
+      void setOverallDefense(int);
+      int getOverallAttack();
+      int getOverallDefense();
+      void setTapped(int);
 };
 
 
