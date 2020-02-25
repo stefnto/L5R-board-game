@@ -73,6 +73,10 @@ int Personality::getDefense(){
   return defense;
 }
 
+int Personality::getAttack(){
+  return attack;
+}
+
 void Personality::setInitialDefense(int num){
    initialDefense = num;
 }
