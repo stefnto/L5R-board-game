@@ -32,25 +32,26 @@ void startingPhase::printHand(Player& player){
 
 void equipPhase::Equip(Player& player, int i){
   if (player.GetPersonSize()!= 0){
-    cout << "Available Green cards: ";
-    player.printhand();
     cout << "Army: ";
     player.printPersonalities();
-    cout << "Money = " << player.getMoney() << endl;
-    BuyAndPlace(player);
+    int n1=1, n2;
+    while (n1!=0){
+      cout << "Money = " << player.getMoney() << endl;
+      cout << "Available Green cards: ";
+      player.printhand();
+      cout << "Choose a Green Card to buy(writing the number of its place in the order shown, from 1 to " << player.GetHandSize() << ",0 to exit):";
+      cin >> n1;
+      if (n1!=0){
+        cout << "Choose personality to apply the Green Card to(1 to " << player.GetPersonSize() << "):";
+        cin >> n2;
+        player.BuyGreenCard(n1-1, n2-1);
+      }
+    }
   }
   else
     cout << "Player" << i << " has no active Personalities" << endl;
 }
 
-void equipPhase::BuyAndPlace(Player& player){
-  int n1, n2;
-  cout << "Choose a Green Card to buy(writing the number of its place in the order shown, 1 to " << player.GetHandSize() << "):";
-  cin >> n1;
-  cout << "Choose personality to apply the Green Card to(1 to " << player.GetPersonSize() << "):";
-  cin >> n2;
-  player.BuyGreenCard(n1-1, n2-1);
-}
 
 void battlePhase::Battle(Player& player, Player* players, int k){ //k is the size of players' array
   if (player.GetPersonSize()!= 0){ //player has army
@@ -103,8 +104,8 @@ void battlePhase::AttackPrepare(Player& player){
   while (n1!=0){
     if ((player.getactivePersonalities().at(n1-1)).istapped() == false){//if this specific personality was not picked before in battle
       player.setTapped(n1-1, 1); //now it is tapped and we cannot use it again in this round
-      player.setOverallAttack(25);
-      //player.setOverallAttack((player.getactivePersonalities().at(n1-1)).getAttack()); //the overall combat attack of the attacking personalities
+      //player.setOverallAttack(25);
+      player.setOverallAttack((player.getactivePersonalities().at(n1-1)).getAttack()); //the overall combat attack of the attacking personalities
     }
     else
       cout << "This card has been picked again in battle in this round!!!\n";

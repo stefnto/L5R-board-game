@@ -83,16 +83,17 @@ void GameBoard::gameplay(int k){
     economy->Economy(players[i]);
   }
   cout << "Continuing to next round..." << endl;
-  cout << "/////////////////////////////////////////////////Battle Phase////////////////////////////////////////////////////" << endl;
-    for (int i=0; i<k; i++){
-    cout << "Player" << i+1 << "'s turn:" << endl;
-    battle->Battle(players[i], players, k);
-  }
-
+  
   cout << "//////////////////////////////////////////////////Equip Phase//////////////////////////////////////////////////" << endl;
   for (int i=0; i<k; i++){
     cout << "Player" << i+1 << "'s turn:" << endl;
     equip->Equip(players[i], i+1);
     cout << endl;
   }
+  cout << "/////////////////////////////////////////////////Battle Phase////////////////////////////////////////////////////" << endl;
+    for (int i=0; i<k; i++){
+    cout << "Player" << i+1 << "'s turn:" << endl;
+    battle->Battle(players[i], players, k);
+  }
+
 }

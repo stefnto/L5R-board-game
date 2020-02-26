@@ -82,6 +82,14 @@ int GreenCard::getType(){
       return ITEM;
 }
 
+int GreenCard::getAttackBonus(){
+  return attackBonus;
+}
+
+int GreenCard::getDefenseBonus(){
+  return defenseBonus;
+}
+
 int BlackCard::getInitialDefense(){return 0;}
 void BlackCard::setInitialDefense(int num){}
 //new function

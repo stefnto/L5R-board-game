@@ -44,6 +44,8 @@ class GreenCard : public Card{
     int getMinHonour();
     int getEffectCost();
     int getType();
+    int getAttackBonus();
+    int getDefenseBonus();
 };
 
 class BlackCard: public Card{

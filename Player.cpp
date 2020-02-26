@@ -123,14 +123,14 @@ void Player::BuyGreenCard(int n1, int n2){
       if (honour >= minHon){
         this->EnableBonus(hand[n1], n2);
         activePersonalities[n2].getFollower(hand[n1]); //adds to followers of personality
-        cout << "Follower added to active Personality" << endl;
+        cout << "Follower added to active Personality\n" << endl;
         hand.erase(hand.begin()+n1); //erases from the hand
       }
     } else if (type==ITEM){//means card is an item
       if (honour >= minHon){
         this->EnableBonus(hand[n1], n2);
         activePersonalities[n2].getItem(hand[n1]); //adds to items of personality
-        cout << "Item added to active Personality" << endl;
+        cout << "Item added to active Personality\n" << endl;
         hand.erase(hand.begin()+n1); //erases from the hand
       }
     }
@@ -155,11 +155,13 @@ void Player::giveInitialDefense(BlackCard*& black){
 
 void Player::EnableBonus(GreenCard*& card, int n2){ //activePersonalities[n2] is the Personality that's to get the bonuses
   int enable;
-  cout << "Enable GreenCard's bonus efects?(type 1 for yes, 0 for no):";
+  cout << "Enable GreenCard's bonus efects?(type 1 for yes, 0 for no)" << "(cost=" << card->getEffectCost() << ")";
+  cout << "(current money = " << this->getMoney() << "):" << endl;
   cin >> enable;
   cout << endl;
   if (enable==1){
       if (money >= card->getEffectCost()){
+          money = money - card->getEffectCost();
           card->EnableEffectBonus();
       } else
           cout << "effectBonus cannot be applied due to money inefficiency!\n";
@@ -243,7 +245,7 @@ void Player::loseDefendingPersonalities(){
       i++;
     }
   }
-  cout << "i is " << i << endl; 
+  cout << "i is " << i << endl;
   if (i!=0)
     cout << "Defending Personalities killed" << endl;
   else cout << "No defending personalities to be killed" << endl;

@@ -69,11 +69,27 @@ Champion::Champion(std::string name){
 }
 
 int Personality::getDefense(){
-  return defense;
+  int defense_from_followers=0, defense_from_items=0;
+
+  for (unsigned int i=0; i<follower.size(); i++){
+    defense_from_followers += follower[i]->getDefenseBonus();
+  }
+  for (unsigned int i=0; i<item.size(); i++){
+    defense_from_items += item[i]->getDefenseBonus();
+  }
+  return defense + defense_from_followers + defense_from_items;
 }
 
 int Personality::getAttack(){
-  return attack;
+  int attack_from_followers=0, attack_from_items=0;
+
+  for (unsigned int i=0; i<follower.size(); i++){
+    attack_from_followers += follower[i]->getAttackBonus();
+  }
+  for (unsigned int i=0; i<=item.size(); i++){
+    attack_from_items += item[i]->getAttackBonus();
+  }
+  return attack + attack_from_followers + attack_from_items;
 }
 
 void Personality::Defending(){
