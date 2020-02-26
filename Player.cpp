@@ -143,6 +143,7 @@ int Player::getMoney(){
 
 void Player::giveMoney(){
   this->money = stronghold->getMoney();
+  money = 15;
 }
 
 void Player::giveInitialDefense(BlackCard*& black){
@@ -215,8 +216,12 @@ int Player::getOverallDefense(){
   return overallDefense;
 }
 
-void Player::setTapped(int pos){
+void Player::setTapped(int pos, int type){
   activePersonalities[pos].Tapp();
+  if (type==0) //defending personality
+    activePersonalities[pos].Defending();
+  else if (type==1) //attacking personality
+    activePersonalities[pos].Attacking();
 }
 
 BlackCard* Player::GetProvince(int province){
@@ -231,9 +236,15 @@ void Player::deleteProvince(int pos){
 
 void Player::loseDefendingPersonalities(){
   vector<Personality>::iterator it = activePersonalities.begin();
-  for (it=activePersonalities.begin(); it< activePersonalities.end(); it++){
-    if (it->isDefending() == true)
+  int i = 0;
+  for (it=activePersonalities.begin(); it<= activePersonalities.end(); it++){
+    if (it->isDefending() == true){
       activePersonalities.erase(it);
+      i++;
+    }
   }
-  cout << "Defending Personalities killed" << endl;
+  cout << "i is " << i << endl; 
+  if (i!=0)
+    cout << "Defending Personalities killed" << endl;
+  else cout << "No defending personalities to be killed" << endl;
 }

@@ -48,7 +48,7 @@ class Player{
       void setOverallDefense(int);
       int getOverallAttack();
       int getOverallDefense();
-      void setTapped(int);
+      void setTapped(int, int);
       BlackCard* GetProvince(int);
       void deleteProvince(int);
       void loseDefendingPersonalities();

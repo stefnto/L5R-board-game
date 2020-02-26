@@ -36,6 +36,7 @@ void equipPhase::Equip(Player& player, int i){
     player.printhand();
     cout << "Army: ";
     player.printPersonalities();
+    cout << "Money = " << player.getMoney() << endl;
     BuyAndPlace(player);
   }
   else
@@ -53,7 +54,7 @@ void equipPhase::BuyAndPlace(Player& player){
 
 void battlePhase::Battle(Player& player, Player* players, int k){ //k is the size of players' array
   if (player.GetPersonSize()!= 0){ //player has army
-    bool battle, defend;
+    bool battle;
     cout << "Army: ";
     player.printPersonalities();
     Defend(player);
@@ -64,6 +65,7 @@ void battlePhase::Battle(Player& player, Player* players, int k){ //k is the siz
     }
   } else
       cout << "Player cannot start a battle due to lack of active Personalities" << endl;
+  cout << endl;
 }
 
 void battlePhase::Attack(Player& player, Player* players, int k){
@@ -73,7 +75,7 @@ void battlePhase::Attack(Player& player, Player* players, int k){
   while (attack_done==false){ //loop needed if player choses to attack himself by mistake
     cout << "Choose which player to attack(from 1 to " << k << "):" << endl;
     for (int i=0; i<k; i++){
-      cout << "Player" << i+1 << " provinces:";
+      cout << "Player" << i+1 << " provinces: ";
       players[i].printprovinces();
     }
     cin >> attack;
@@ -88,7 +90,7 @@ void battlePhase::Attack(Player& player, Player* players, int k){
         players[attack-1].deleteProvince(province-1); //deletes attacked province
         players[attack-1].loseDefendingPersonalities(); //deletes defending personalities of attack province
       }
-    }
+    } else cout << "Player cannot attack himself" << endl;
   }
 }
 
@@ -100,13 +102,13 @@ void battlePhase::AttackPrepare(Player& player){
   cin >> n1;
   while (n1!=0){
     if ((player.getactivePersonalities().at(n1-1)).istapped() == false){//if this specific personality was not picked before in battle
-      player.setTapped(n1-1); //now it is tapped and we cannot use it again in this round
-      //player.setOverallAttack(15);
-      player.setOverallAttack((player.getactivePersonalities().at(n1-1)).getAttack()); //the overall combat attack of the attacking personalities
+      player.setTapped(n1-1, 1); //now it is tapped and we cannot use it again in this round
+      player.setOverallAttack(25);
+      //player.setOverallAttack((player.getactivePersonalities().at(n1-1)).getAttack()); //the overall combat attack of the attacking personalities
     }
     else
       cout << "This card has been picked again in battle in this round!!!\n";
-    cout << "Do you want to choose another personality to attack?\n";
+    cout << "Do you want to choose another personality to attack(0 to exit)?\n";
     cout << "Army: ";
     player.printPersonalities();
     cin >> n1;
@@ -121,13 +123,13 @@ void battlePhase::Defend(Player& player){
     while (n1!=0){
       //Personality* per =  new Personality(player.getactivePersonalities().at(n1-1));
       if ((player.getactivePersonalities().at(n1-1)).istapped() == false){//if this specific personality was not picked before in battle
-        player.setTapped(n1-1); //now it is tapped and we cannot use it again in this round
+        player.setTapped(n1-1, 0); //now it is tapped and we cannot use it again in this round
         player.setOverallDefense((player.getactivePersonalities().at(n1-1)).getDefense()); //the overall defense from the defending personalities
       }
       else
         cout << "This card has been picked again in battle in this round!!!\n";
       //delete per;
-      cout << "Do you want to choose another personality to defend?\n";
+      cout << "Do you want to choose another personality to defend(0 to exit)?\n";
       cout << "Army: ";
       player.printPersonalities();
       cin >> n1;
