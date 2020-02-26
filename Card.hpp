@@ -46,6 +46,7 @@ class GreenCard : public Card{
     int getType();
     int getAttackBonus();
     int getDefenseBonus();
+    int getEffectBonus();
 };
 
 class BlackCard: public Card{

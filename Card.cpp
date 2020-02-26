@@ -90,6 +90,10 @@ int GreenCard::getDefenseBonus(){
   return defenseBonus;
 }
 
+int GreenCard::getEffectBonus(){
+  return effectBonus;
+}
+
 int BlackCard::getInitialDefense(){return 0;}
 void BlackCard::setInitialDefense(int num){}
 //new function
