@@ -15,7 +15,8 @@ class Personality: public BlackCard{
     int defense;
     int honour;
     bool isDead;
-    int initialDefense;
+    bool defending;
+    bool attacking;
     std::vector<GreenCard *> follower; //max followers 3
     std::vector<GreenCard *> item; //max items 4
   public:
@@ -25,8 +26,11 @@ class Personality: public BlackCard{
     int getHonour();
     int getAttack();
     int getDefense();
-    void setInitialDefense(int);
-    int getInitialDefense();
+    void Defending(); //sets the personality to attack
+    void Attacking(); //sets the personality to defense
+    void unTapp();
+    bool isDefending();
+    bool isAttacking();
 };
 
 class Attacker : public Personality{

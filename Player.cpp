@@ -31,7 +31,7 @@ void Player::addStronghold(Stronghold*& stronghold){
   this->stronghold = stronghold;
 }
 
-void Player::GetProvince(){
+void Player::DrawProvince(){
   BlackCard* black = deck->getLastBlackCard();//
   provinces.push_back(black);
   giveInitialDefense(black);
@@ -53,7 +53,10 @@ void Player::RevealPro(){
 
 void Player::printprovinces(){
   for (unsigned int i=0; i<provinces.size(); i++){
-    cout << provinces[i]->getName() << "(" << provinces[i]->getCost() << ")" << " | ";
+    cout << provinces[i]->getName() << "(" << provinces[i]->getCost() << ")";
+    if (provinces[i]->Revealed()==1)
+      cout << "(R) | ";
+    else cout << "(NR) | ";
   }
   cout << endl;
 }
@@ -86,7 +89,10 @@ void Player::printhand(){
 void Player::printPersonalities(){
   if (activePersonalities.size()!= 0){
     for (unsigned int i=0; i<activePersonalities.size(); i++){
-      cout << activePersonalities[i].getName() << " | ";
+      cout << activePersonalities[i].getName();
+      if (activePersonalities[i].istapped()==false)
+        cout << "(UnT) | ";
+      else cout  << "(T) | ";
     }
     cout << endl;
   }
@@ -100,6 +106,10 @@ int Player::GetPersonSize(){
 
 int Player::GetHandSize(){
   return hand.size();
+}
+
+int Player::GetProvinceSize(){
+  return numberOfProvinces;
 }
 
 void Player::BuyGreenCard(int n1, int n2){
@@ -169,7 +179,7 @@ void Player::BuyProvince(int n1){
         money = money - person->getCost();
         activePersonalities.emplace_back(*person);
         provinces.erase(provinces.begin()+n1); //erases from the provinces
-        this->GetProvince(); //gets another province (not revealed)
+        this->DrawProvince(); //gets another province (not revealed)
         cout << "Personality card bought" << endl;
       } else cout << "Not enough money to buy this card" << endl;
     } else if (holding!=NULL){
@@ -177,7 +187,7 @@ void Player::BuyProvince(int n1){
         money = money - holding->getCost();
         holdings.emplace_back(*holding);
         provinces.erase(provinces.begin()+n1); //erases from the provinces
-        this->GetProvince(); //gets another province (not revealed)
+        this->DrawProvince(); //gets another province (not revealed)
         cout << "Holding card bought" << endl;
       } else cout << "Not enough money to buy this card" << endl;
     }
@@ -207,4 +217,23 @@ int Player::getOverallDefense(){
 
 void Player::setTapped(int pos){
   activePersonalities[pos].Tapp();
+}
+
+BlackCard* Player::GetProvince(int province){
+  return provinces[province];
+}
+
+void Player::deleteProvince(int pos){
+  numberOfProvinces--;
+  provinces.erase(provinces.begin()+pos);
+  cout << "Province was destroyed" << endl;
+}
+
+void Player::loseDefendingPersonalities(){
+  vector<Personality>::iterator it = activePersonalities.begin();
+  for (it=activePersonalities.begin(); it< activePersonalities.end(); it++){
+    if (it->isDefending() == true)
+      activePersonalities.erase(it);
+  }
+  cout << "Defending Personalities killed" << endl;
 }

@@ -14,6 +14,9 @@ using namespace std;
 
 int main(void){
 srand(time(NULL));
+  cout << "When printing personalities (UnT) means that the card is untapped, (T) that it's tapped" << endl;
+  cout << "When printing provinces, first the cost of the province is displayed,\n"
+          "then (R) means that it's revealed, (NR) that it's not revealed" << endl;
   int players = 3;
   GameBoard game(players);
   game.gameplay(players);

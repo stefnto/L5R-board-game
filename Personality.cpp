@@ -5,6 +5,8 @@ using namespace std;
 Personality::Personality(){
   isDead = 0; //the card is alive
   BlackCard::isPersonality=true;
+  defending = false;
+  attacking = false;
 }
 
 void Personality::getFollower(GreenCard*& card){
@@ -25,9 +27,6 @@ int Personality::getHonour(){
   return honour;
 }
 
-int Personality::getInitialDefense(){
-  return initialDefense;
-}
 
 Attacker::Attacker(std::string name){
   this->name = name;
@@ -77,6 +76,24 @@ int Personality::getAttack(){
   return attack;
 }
 
-void Personality::setInitialDefense(int num){
-   initialDefense = num;
+void Personality::Defending(){
+  defending = true;
+}
+
+void Personality::Attacking(){
+  attacking = true;
+}
+
+void Personality::unTapp(){
+  Card::isTapped = false;
+  defending = false;
+  attacking = false;
+}
+
+bool Personality::isDefending(){
+  return defending;
+}
+
+bool Personality::isAttacking(){
+  return attacking;
 }

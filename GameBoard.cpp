@@ -24,7 +24,7 @@ void GameBoard::initializeGameBoard(int k){ //k is the number of the players
     players[i].addStronghold(stronghold);//Function addStronghold() here adds the Stronghold of each player
     players[i].giveMoney(); //Gives starting money to the player
     for (int j=0; j<4; j++)
-      players[i].GetProvince();
+      players[i].DrawProvince();
   }
   sortplayers(k); //sorts players in descending order
   cout << k << " players are playing the game!" << endl;
@@ -74,14 +74,14 @@ void GameBoard::gameplay(int k){
   }
   //Battle phase
   //cout << "//////////////////////////////////////////////////Battle Phase//////////////////////////////////////////////////" << endl;
-
+  cout << "Continuing to next round..." << endl;
   //Economy phase
   cout << "//////////////////////////////////////////////////Economy Phase//////////////////////////////////////////////////" << endl;
   for (int i=0; i<k; i++){
     cout << "Player" << i+1 << "'s turn:" << endl;
     economy->Economy(players[i]);
   }
-
+  cout << "Continuing to next round..." << endl;
   cout << "/////////////////////////////////////////////////Battle Phase////////////////////////////////////////////////////" << endl;
-    battle->Battle(players[0]);
+    battle->Battle(players[0], players, k);
 }

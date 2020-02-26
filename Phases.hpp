@@ -22,8 +22,9 @@ class equipPhase{
 
 class battlePhase{
   public:
-    void Battle(Player&);
-    void Attack(Player&);
+    void Battle(Player&, Player*, int);
+    void Attack(Player&, Player*, int);
+    void AttackPrepare(Player&);
     void Defend(Player&);
 };
 

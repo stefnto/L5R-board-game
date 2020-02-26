@@ -19,7 +19,7 @@ class Card{
     bool isTapped;
    public:
      Card();
-     // ~Card();
+    //~Card();
      void unTapp();
      void Tapp();
      bool istapped();//new function
