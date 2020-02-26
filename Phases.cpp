@@ -121,14 +121,12 @@ void battlePhase::Defend(Player& player){
     cout << "Choose a personality to use for defense(from 1 to " <<  player.GetPersonSize() << ", 0 to exit):";
     cin >> n1;
     while (n1!=0){
-      //Personality* per =  new Personality(player.getactivePersonalities().at(n1-1));
       if ((player.getactivePersonalities().at(n1-1)).istapped() == false){//if this specific personality was not picked before in battle
         player.setTapped(n1-1, 0); //now it is tapped and we cannot use it again in this round
         player.setOverallDefense((player.getactivePersonalities().at(n1-1)).getDefense()); //the overall defense from the defending personalities
       }
       else
         cout << "This card has been picked again in battle in this round!!!\n";
-      //delete per;
       cout << "Do you want to choose another personality to defend(0 to exit)?\n";
       cout << "Army: ";
       player.printPersonalities();
