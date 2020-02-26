@@ -86,7 +86,7 @@ int Personality::getAttack(){
   for (unsigned int i=0; i<follower.size(); i++){
     attack_from_followers += follower[i]->getAttackBonus();
   }
-  for (unsigned int i=0; i<=item.size(); i++){
+  for (unsigned int i=0; i<item.size(); i++){
     attack_from_items += item[i]->getAttackBonus();
   }
   return attack + attack_from_followers + attack_from_items;

@@ -27,7 +27,7 @@ void GreenCard::EnableEffectBonus(){
   cin >> bonus;
   if (bonus==1)
     attackBonus += effectBonus;
-  else if (bonus==2)
+  else if (bonus==0)
       defenseBonus += effectBonus;
   cout << "effectBonus has been applied!\n";
 }
