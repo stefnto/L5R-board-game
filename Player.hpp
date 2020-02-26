@@ -52,6 +52,9 @@ class Player{
       BlackCard* GetProvince(int);
       void deleteProvince(int);
       void loseDefendingPersonalities();
+      void loseAttackingPersonalities();
+      void loseChosenAttackingPersonalities(int);
+      void deleteFollower(int);
 };
 
 

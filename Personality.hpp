@@ -31,6 +31,10 @@ class Personality: public BlackCard{
     void unTapp();
     bool isDefending();
     bool isAttacking();
+    int getFollowerSize();
+    void eraseFollower(int);
+    int getFollowerAttack(int);
+    std::vector<GreenCard *> getFollower();
 };
 
 class Attacker : public Personality{

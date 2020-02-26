@@ -251,3 +251,56 @@ void Player::loseDefendingPersonalities(){
     cout << "Defending Personalities killed" << endl;
   else cout << "No defending personalities to be killed" << endl;
 }
+
+void Player::loseAttackingPersonalities(){
+  vector<Personality>::iterator it = activePersonalities.begin();
+  int i = 0;
+  for (it=activePersonalities.begin(); it<= activePersonalities.end(); it++){
+    if (it->isAttacking() == true){
+      activePersonalities.erase(it);
+      i++;
+    }
+  }
+  cout << "i is " << i << endl;
+  if (i!=0)
+    cout << "Attacking Personalities killed" << endl;
+  else cout << "No attacking personalities to be killed" << endl;
+}
+
+void Player::loseChosenAttackingPersonalities(int result){
+  cout << "Attacker needs to sacrifice an amount of personalities with at least overall attack: " << result << endl;
+  int loop = result;
+  int h, l, n1, n2;
+  do{
+    if (activePersonalities.empty() == true){
+      cout << "There are no personalities left\n";
+      break;
+    }
+    cout << "Do you want to sacrifice a follower or a personality?(type 0 for follower, 1 for personality)\n";
+    cin >> l;
+    if (l == 0){
+      cout << "Choose the personality where the follower you want is(1 to " << GetPersonSize() << "):";
+      cin >> n1;
+      if (activePersonalities[n1-1].getFollower().empty() == true){
+        cout << "There are no followers left\n";
+        continue;
+      }
+      cout << "Choose the follower to sacrifice(1 to " << activePersonalities[n1-1].getFollowerSize() << "):\n";
+      cin >> n2;
+      deleteFollower(n2-1);
+      loop -= activePersonalities[n1-1].getFollowerAttack(n2-1);
+    }
+    else if(l == 1){
+      cout << "Choose a personality to sacrifice(1 to " << GetPersonSize() << "):\n";
+      printPersonalities();
+      cin >> h;
+      activePersonalities.erase(activePersonalities.begin() + h-1);
+      loop -= activePersonalities[h-1].getAttack();
+    }
+  }while (loop <= 0);
+  cout << "All the appropriate sacrifices have been made!\n";
+}
+
+void Player::deleteFollower(int pos){
+  activePersonalities[pos].eraseFollower(pos);
+}

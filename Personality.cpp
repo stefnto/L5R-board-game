@@ -113,3 +113,19 @@ bool Personality::isDefending(){
 bool Personality::isAttacking(){
   return attacking;
 }
+
+int Personality::getFollowerSize(){
+  return follower.size();
+}
+
+void Personality::eraseFollower(int pos){
+  follower.erase(follower.begin() + pos);
+}
+
+int Personality::getFollowerAttack(int pos){
+  return follower[pos]->getAttackBonus();
+}
+
+vector<GreenCard *> Personality::getFollower(){
+  return follower;
+}
