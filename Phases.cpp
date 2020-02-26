@@ -91,6 +91,20 @@ void battlePhase::Attack(Player& player, Player* players, int k){
         players[attack-1].deleteProvince(province-1); //deletes attacked province
         players[attack-1].loseDefendingPersonalities(); //deletes defending personalities of attack province
       }
+      else{
+        if(result > 0){ //bullet 1
+          players[attack-1].loseDefendingPersonalities();
+          player.loseChosenAttackingPersonalities(result);
+        }
+        else if(result == 0){ //bullet 2
+          players[attack-1].loseDefendingPersonalities();
+          player.loseAttackingPersonalities();
+        }
+        // else if (result < 0){ //bullet 3
+        //   player.loseAttackingPersonalities();
+        //   player[attack-1].loseChosenDefendingPersonalities(result);
+        // }
+      }
     } else cout << "Player cannot attack himself" << endl;
   }
 }
