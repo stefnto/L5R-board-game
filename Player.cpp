@@ -160,7 +160,7 @@ int Player::getMoney(){
 
 void Player::giveMoney(){
   this->money = stronghold->getMoney();
-  money = 15;
+  money = 30;
 }
 
 void Player::giveInitialDefense(BlackCard*& black){
@@ -261,8 +261,8 @@ void Player::loseDefendingPersonalities(){
     }
   }
   if (k!=0)
-    cout << "Defending Personalities killed\n" << endl;
-  else cout << "No defending personalities to be killed\n" << endl;
+    cout << "Defending Personalities killed" << endl;
+  else cout << "No defending personalities to be killed" << endl;
 }
 
 void Player::loseAttackingPersonalities(){

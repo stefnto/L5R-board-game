@@ -61,7 +61,7 @@ Wakizashi::Wakizashi(std::string name){
 
 void Item::durability_loss(){
   durability--;
-  std::cout << this->getName() << " 's durability reduced" << std::endl;
+  std::cout << this->getName() << "'s durability reduced" << std::endl;
 }
 
 int Item::GetDurability(){
