@@ -34,6 +34,7 @@ class Player{
       void unTappProvinces();
       void printhand();
       void printPersonalities();
+      void printPersonalitieswithAttack();
       int GetPersonSize(); //returns activePersonalities' vector size
       int GetHandSize(); //returns number of GreenCards in hand
       int GetProvinceSize(); //returns number of provinces
@@ -54,7 +55,7 @@ class Player{
       void loseDefendingPersonalities();
       void loseAttackingPersonalities();
       void loseChosenAttackingPersonalities(int);
-      void deleteFollower(int);
+      void deleteFollower(int, int);
 };
 
 

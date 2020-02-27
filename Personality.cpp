@@ -27,6 +27,13 @@ int Personality::getHonour(){
   return honour;
 }
 
+int Personality::getAttack(){
+  return attack;
+}
+
+int Personality::getDefense(){
+  return defense;
+}
 
 Attacker::Attacker(std::string name){
   this->name = name;
@@ -68,7 +75,7 @@ Champion::Champion(std::string name){
   honour = 12;
 }
 
-int Personality::getDefense(){
+int Personality::getBonusDefense(){
   int defense_from_followers=0, defense_from_items=0;
 
   for (unsigned int i=0; i<follower.size(); i++){
@@ -80,7 +87,7 @@ int Personality::getDefense(){
   return defense + defense_from_followers + defense_from_items;
 }
 
-int Personality::getAttack(){
+int Personality::getBonusAttack(){
   int attack_from_followers=0, attack_from_items=0;
 
   for (unsigned int i=0; i<follower.size(); i++){
@@ -128,4 +135,20 @@ int Personality::getFollowerAttack(int pos){
 
 vector<GreenCard *> Personality::getFollower(){
   return follower;
+}
+
+void Personality::printFollower(){
+  cout << this->getName() << "'s followers: ";
+  for (unsigned int i=0; i<follower.size(); i++){
+    cout << follower[i]->getName() << "(AT=" <<follower[i]->getAttackBonus() << ") | " ;
+  }
+  cout << endl;
+}
+
+void Personality::setInitialDefense(int num){
+   initialDefense = num;
+}
+
+int Personality::getInitialDefense(){
+  return initialDefense;
 }

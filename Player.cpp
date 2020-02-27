@@ -57,6 +57,7 @@ void Player::printprovinces(){
     if (provinces[i]->Revealed()==1)
       cout << "(R) | ";
     else cout << "(NR) | ";
+    //cout << "(" << provinces[i]->getInitialDefense() << ") | ";
   }
   cout << endl;
 }
@@ -93,6 +94,21 @@ void Player::printPersonalities(){
       if (activePersonalities[i].istapped()==false)
         cout << "(UnT) | ";
       else cout  << "(T) | ";
+    }
+    cout << endl;
+  }
+  else
+    cout << "Player has no active Personalities" << endl;
+}
+
+void Player::printPersonalitieswithAttack(){
+  if (activePersonalities.size()!= 0){
+    for (unsigned int i=0; i<activePersonalities.size(); i++){
+      cout << activePersonalities[i].getName();
+      if (activePersonalities[i].istapped()==false)
+        cout << "(UnT)";
+      else cout  << "(T)";
+      cout << "(AT=" << activePersonalities[i].getAttack() << ") | ";
     }
     cout << endl;
   }
@@ -148,15 +164,13 @@ void Player::giveMoney(){
 }
 
 void Player::giveInitialDefense(BlackCard*& black){
-  // if (black->getType() == PERSONALITY){
     int num = this->stronghold->getInitialDefense();
     black->setInitialDefense(num);
-  // }
 }
 
 void Player::EnableBonus(GreenCard*& card, int n2){ //activePersonalities[n2] is the Personality that's to get the bonuses
   int enable;
-  cout << "Enable GreenCard's bonus effects(" << card->getEffectBonus() << ")?(type 1 for yes, 0 for no)" << "(cost=" << card->getEffectCost() << ")";
+  cout << "Enable GreenCard's bonus effects(+" << card->getEffectBonus() << ")?(type 1 for yes, 0 for no)" << "(cost=" << card->getEffectCost() << ")";
   cout << "(current money = " << this->getMoney() << "):" << endl;
   cin >> enable;
   cout << endl;
@@ -239,30 +253,27 @@ void Player::deleteProvince(int pos){
 
 void Player::loseDefendingPersonalities(){
   vector<Personality>::iterator it = activePersonalities.begin();
-  int i = 0;
-  for (it=activePersonalities.begin(); it<= activePersonalities.end(); it++){
-    if (it->isDefending() == true){
-      activePersonalities.erase(it);
-      i++;
+  int k = 0;
+  for (unsigned int i=0; i<activePersonalities.size(); i++){
+    if (activePersonalities[i].isDefending() == true){ //trwei edw segmetation
+      activePersonalities.erase(activePersonalities.begin()+i);
+      k++;
     }
   }
-  cout << "i is " << i << endl;
-  if (i!=0)
-    cout << "Defending Personalities killed" << endl;
-  else cout << "No defending personalities to be killed" << endl;
+  if (k!=0)
+    cout << "Defending Personalities killed\n" << endl;
+  else cout << "No defending personalities to be killed\n" << endl;
 }
 
 void Player::loseAttackingPersonalities(){
-  vector<Personality>::iterator it = activePersonalities.begin();
-  int i = 0;
-  for (it=activePersonalities.begin(); it<= activePersonalities.end(); it++){
-    if (it->isAttacking() == true){
-      activePersonalities.erase(it);
-      i++;
+  int k = 0;
+  for (unsigned int i=0; i<activePersonalities.size(); i++){
+    if (activePersonalities[i].isAttacking() == true){
+      activePersonalities.erase(activePersonalities.begin()+i);
+      k++;
     }
   }
-  cout << "i is " << i << endl;
-  if (i!=0)
+  if (k!=0)
     cout << "Attacking Personalities killed" << endl;
   else cout << "No attacking personalities to be killed" << endl;
 }
@@ -276,6 +287,12 @@ void Player::loseChosenAttackingPersonalities(int result){
       cout << "There are no personalities left\n";
       break;
     }
+    cout << endl;
+    cout << "Personalities: ";
+    this->printPersonalitieswithAttack();
+    cout << endl;
+    for (unsigned int i=0; i<activePersonalities.size(); i++)
+      activePersonalities[i].printFollower();
     cout << "Do you want to sacrifice a follower or a personality?(type 0 for follower, 1 for personality)\n";
     cin >> l;
     if (l == 0){
@@ -287,20 +304,20 @@ void Player::loseChosenAttackingPersonalities(int result){
       }
       cout << "Choose the follower to sacrifice(1 to " << activePersonalities[n1-1].getFollowerSize() << "):\n";
       cin >> n2;
-      deleteFollower(n2-1);
+      deleteFollower(n1-1, n2-1);
       loop -= activePersonalities[n1-1].getFollowerAttack(n2-1);
     }
     else if(l == 1){
       cout << "Choose a personality to sacrifice(1 to " << GetPersonSize() << "):\n";
-      printPersonalities();
+      //printPersonalities();
       cin >> h;
       activePersonalities.erase(activePersonalities.begin() + h-1);
       loop -= activePersonalities[h-1].getAttack();
     }
-  }while (loop <= 0);
+  }while (loop > 0);
   cout << "All the appropriate sacrifices have been made!\n";
 }
 
-void Player::deleteFollower(int pos){
-  activePersonalities[pos].eraseFollower(pos);
+void Player::deleteFollower(int pos1, int pos2){
+  activePersonalities[pos1].eraseFollower(pos2);
 }

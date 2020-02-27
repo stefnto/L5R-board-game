@@ -87,6 +87,7 @@ void battlePhase::Attack(Player& player, Player* players, int k){
       cin >> province;
       BlackCard* black = players[attack-1].GetProvince(province-1);
       int result = player.getOverallAttack() - (players[attack-1].getOverallDefense() + black->getInitialDefense());
+      cout << "result = " << result << " amuna eparxias = " << black->getInitialDefense() << endl;
       if (result>black->getInitialDefense()){ //attacking player wins!
         players[attack-1].deleteProvince(province-1); //deletes attacked province
         players[attack-1].loseDefendingPersonalities(); //deletes defending personalities of attack province
@@ -96,14 +97,14 @@ void battlePhase::Attack(Player& player, Player* players, int k){
           players[attack-1].loseDefendingPersonalities();
           player.loseChosenAttackingPersonalities(result);
         }
-        else if(result == 0){ //bullet 2
+        else if(result == 0){ //draw
           players[attack-1].loseDefendingPersonalities();
           player.loseAttackingPersonalities();
         }
-        // else if (result < 0){ //bullet 3
-        //   player.loseAttackingPersonalities();
-        //   player[attack-1].loseChosenDefendingPersonalities(result);
-        // }
+         // else if (result < 0){ //bullet 3
+         //   player.loseAttackingPersonalities();
+         //   players[attack-1].loseChosenDefendingPersonalities(result);
+         // }
       }
     } else cout << "Player cannot attack himself" << endl;
   }
@@ -119,7 +120,7 @@ void battlePhase::AttackPrepare(Player& player){
     if ((player.getactivePersonalities().at(n1-1)).istapped() == false){//if this specific personality was not picked before in battle
       player.setTapped(n1-1, 1); //now it is tapped and we cannot use it again in this round
       //player.setOverallAttack(25);
-      player.setOverallAttack((player.getactivePersonalities().at(n1-1)).getAttack()); //the overall combat attack of the attacking personalities
+      player.setOverallAttack((player.getactivePersonalities().at(n1-1)).getBonusAttack()); //the overall combat attack of the attacking personalities
     }
     else
       cout << "This card has been picked again in battle in this round!!!\n";
@@ -138,7 +139,7 @@ void battlePhase::Defend(Player& player){
     while (n1!=0){
       if ((player.getactivePersonalities().at(n1-1)).istapped() == false){//if this specific personality was not picked before in battle
         player.setTapped(n1-1, 0); //now it is tapped and we cannot use it again in this round
-        player.setOverallDefense((player.getactivePersonalities().at(n1-1)).getDefense()); //the overall defense from the defending personalities
+        player.setOverallDefense((player.getactivePersonalities().at(n1-1)).getBonusDefense()); //the overall defense from the defending personalities
       }
       else
         cout << "This card has been picked again in battle in this round!!!\n";
