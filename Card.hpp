@@ -39,7 +39,7 @@ class GreenCard : public Card{
     bool isItem;
   public:
     GreenCard();
-    // ~GreenCard();
+    virtual ~GreenCard();
     void EnableEffectBonus();
     int getMinHonour();
     int getEffectCost();
@@ -47,6 +47,8 @@ class GreenCard : public Card{
     int getAttackBonus();
     int getDefenseBonus();
     int getEffectBonus();
+    virtual void durability_loss();
+    virtual int GetDurability();
 };
 
 class BlackCard: public Card{

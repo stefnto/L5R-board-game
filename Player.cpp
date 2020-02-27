@@ -273,13 +273,11 @@ void Player::loseAttackingPersonalities(){
       k++;
     }
   }
-  if (k!=0)
     cout << "Attacking Personalities killed" << endl;
-  else cout << "No attacking personalities to be killed" << endl;
 }
 
 void Player::loseChosenAttackingPersonalities(int result){
-  cout << "Attacker needs to sacrifice an amount of personalities with at least overall attack: " << result << endl;
+  cout << "Attacker needs to sacrifice an amount of personalities and/or followers with at least overall attack: " << result << endl;
   int loop = result;
   int h, l, n1, n2;
   do{
@@ -309,7 +307,45 @@ void Player::loseChosenAttackingPersonalities(int result){
     }
     else if(l == 1){
       cout << "Choose a personality to sacrifice(1 to " << GetPersonSize() << "):\n";
-      //printPersonalities();
+      cin >> h;
+      activePersonalities.erase(activePersonalities.begin() + h-1);
+      loop -= activePersonalities[h-1].getAttack();
+    }
+  }while (loop > 0);
+  cout << "All the appropriate sacrifices have been made!\n";
+}
+
+void Player::loseChosenDefendingPersonalities(int result){
+  cout << "Defender needs to sacrifice an amount of personalities and/or followers with at least overall attack: " << result << endl;
+  int loop = result;
+  int h, l, n1, n2;
+  do{
+    if (activePersonalities.empty() == true){
+      cout << "There are no personalities left\n";
+      break;
+    }
+    cout << endl;
+    cout << "Personalities: ";
+    this->printPersonalitieswithAttack();
+    cout << endl;
+    for (unsigned int i=0; i<activePersonalities.size(); i++)
+      activePersonalities[i].printFollower();
+    cout << "Do you want to sacrifice a follower or a personality?(type 0 for follower, 1 for personality)\n";
+    cin >> l;
+    if (l == 0){
+      cout << "Choose the personality where the follower you want is(1 to " << GetPersonSize() << "):";
+      cin >> n1;
+      if (activePersonalities[n1-1].getFollower().empty() == true){
+        cout << "There are no followers left\n";
+        continue;
+      }
+      cout << "Choose the follower to sacrifice(1 to " << activePersonalities[n1-1].getFollowerSize() << "):\n";
+      cin >> n2;
+      deleteFollower(n1-1, n2-1);
+      loop -= activePersonalities[n1-1].getFollowerAttack(n2-1);
+    }
+    else if(l == 1){
+      cout << "Choose a personality to sacrifice(1 to " << GetPersonSize() << "):\n";
       cin >> h;
       activePersonalities.erase(activePersonalities.begin() + h-1);
       loop -= activePersonalities[h-1].getAttack();
@@ -319,5 +355,21 @@ void Player::loseChosenAttackingPersonalities(int result){
 }
 
 void Player::deleteFollower(int pos1, int pos2){
-  activePersonalities[pos1].eraseFollower(pos2);
+  activePersonalities[pos1].detachFollower(pos2);
+}
+
+void Player::itemloseDurability(){
+  for (unsigned int i=0; i<activePersonalities.size(); i++)
+    activePersonalities[i].lose_durability();
+}
+
+void Player::personloseHonour(){
+  for (unsigned int i=0; i<activePersonalities.size(); i++){
+    if (activePersonalities[i].getHonour()==0){
+      cout << activePersonalities[i].getName() << " performed Seppuku" << endl;
+      activePersonalities.erase(activePersonalities.begin()+i); //personality performs Seppuku
+    }
+    else
+      activePersonalities[i].lose_honour(); //else person loses honour
+  }
 }

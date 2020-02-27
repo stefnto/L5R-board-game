@@ -21,6 +21,8 @@ GreenCard::GreenCard(){
   isItem = false;
 }
 
+GreenCard::~GreenCard(){}
+
 void GreenCard::EnableEffectBonus(){
   int bonus;
   cout << "Press 1 to upgrade attack, 0 to upgrade defense:";
@@ -94,9 +96,14 @@ int GreenCard::getEffectBonus(){
   return effectBonus;
 }
 
-int BlackCard::getInitialDefense(){return 0;}
+int BlackCard::getInitialDefense(){return 0;} //is not used
+
 void BlackCard::setInitialDefense(int num){}
 //new function
 bool Card::istapped(){
   return isTapped;
 }
+
+int GreenCard::GetDurability(){return 0;} //is not used
+
+void GreenCard::durability_loss(){}

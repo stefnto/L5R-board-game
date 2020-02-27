@@ -55,7 +55,10 @@ class Player{
       void loseDefendingPersonalities();
       void loseAttackingPersonalities();
       void loseChosenAttackingPersonalities(int);
+      void loseChosenDefendingPersonalities(int);
       void deleteFollower(int, int);
+      void itemloseDurability();
+      void personloseHonour();
 };
 
 

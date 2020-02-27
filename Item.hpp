@@ -9,6 +9,9 @@ class Item: public GreenCard{
   public:
     Item();
     // ~Item();
+    void durability_loss();
+    //void detach();
+    int GetDurability();
 };
 
 class Katana : public Item{

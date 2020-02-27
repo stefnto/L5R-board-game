@@ -86,6 +86,7 @@ void battlePhase::Attack(Player& player, Player* players, int k){
       players[attack-1].printprovinces();
       cin >> province;
       BlackCard* black = players[attack-1].GetProvince(province-1);
+      //int result = 0;
       int result = player.getOverallAttack() - (players[attack-1].getOverallDefense() + black->getInitialDefense());
       cout << "result = " << result << " amuna eparxias = " << black->getInitialDefense() << endl;
       if (result>black->getInitialDefense()){ //attacking player wins!
@@ -96,15 +97,17 @@ void battlePhase::Attack(Player& player, Player* players, int k){
         if(result > 0){ //bullet 1
           players[attack-1].loseDefendingPersonalities();
           player.loseChosenAttackingPersonalities(result);
+          player.itemloseDurability();
+          player.personloseHonour(); //personalities that were attacking and lost but survived
         }
         else if(result == 0){ //draw
           players[attack-1].loseDefendingPersonalities();
           player.loseAttackingPersonalities();
         }
-         // else if (result < 0){ //bullet 3
-         //   player.loseAttackingPersonalities();
-         //   players[attack-1].loseChosenDefendingPersonalities(result);
-         // }
+        else if (result < 0){ //bullet 3
+           player.loseAttackingPersonalities();
+           players[attack-1].loseChosenDefendingPersonalities(result);
+         }
       }
     } else cout << "Player cannot attack himself" << endl;
   }

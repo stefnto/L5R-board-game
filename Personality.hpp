@@ -33,7 +33,7 @@ class Personality: public BlackCard{
     bool isDefending();
     bool isAttacking();
     int getFollowerSize();
-    void eraseFollower(int);
+    void detachFollower(int);
     int getFollowerAttack(int);
     int getBonusAttack();
     int getBonusDefense();
@@ -41,6 +41,9 @@ class Personality: public BlackCard{
     void printFollower();
     void setInitialDefense(int);
     int getInitialDefense();
+    void lose_durability();
+    void detach(int);
+    void lose_honour();
 };
 
 class Attacker : public Personality{

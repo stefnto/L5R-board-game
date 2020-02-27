@@ -125,7 +125,7 @@ int Personality::getFollowerSize(){
   return follower.size();
 }
 
-void Personality::eraseFollower(int pos){
+void Personality::detachFollower(int pos){
   follower.erase(follower.begin() + pos);
 }
 
@@ -151,4 +151,24 @@ void Personality::setInitialDefense(int num){
 
 int Personality::getInitialDefense(){
   return initialDefense;
+}
+
+void Personality::lose_durability(){
+  for (unsigned int i=0; i<item.size(); i++){
+    if (item[i]->GetDurability() == 0){
+      detach(i); //item is destroyed
+    }
+    else
+      item[i]->durability_loss(); //else loses durability
+  }
+}
+
+void Personality::detach(int i){
+  item.erase(item.begin()+i);
+  cout << item[i]->getName() << " detached" << endl;
+}
+
+void Personality::lose_honour(){
+  honour--;
+  cout << this->getName() << " lost a point of honour" << endl;
 }
