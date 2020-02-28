@@ -40,7 +40,7 @@ class finalPhase{
     void printProvinces(Player*, int);
     void printArena(Player*, int);
     void printHoldings(Player*, int);
-    void checkWinningCondition(Player*, int);
+    bool checkWinningCondition(Player*, int);
 };
 
 #endif

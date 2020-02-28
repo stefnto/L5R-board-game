@@ -55,61 +55,63 @@ void GameBoard::gameplay(int k){
   battlePhase* battle = new battlePhase();
   economyPhase* economy = new economyPhase();
   finalPhase* final = new finalPhase();
+  bool game_finished = false;
   cout << endl;
-  //Starting Phase
-  cout << "//////////////////////////////////////////////////Starting Phase//////////////////////////////////////////////////" << endl;
-  for (int i=0; i<k; i++){
-    cout << "Player" << i+1 << ":" << endl;
-    start->untapEverything(players[i]);
-    start->drawFateCard(players[i]);
-    start->revealProvinces(players[i]);
-    start->printHand(players[i]);
-    start->printProvinces(players[i]);
-    cout << endl;
-  }
-  //Equip phase
-  cout << "//////////////////////////////////////////////////Equip Phase//////////////////////////////////////////////////" << endl;
-  for (int i=0; i<k; i++){
-    cout << "Player" << i+1 << "'s turn:" << endl;
-    equip->Equip(players[i], i+1);
-    cout << endl;
-  }
-  //Battle phase
-  //cout << "//////////////////////////////////////////////////Battle Phase//////////////////////////////////////////////////" << endl;
-  cout << "Continuing to next round..." << endl;
-  //Economy phase
+  int i=0;
+  while (game_finished == false){
+    if (i!=0)
+      cout << "//////////////////////////////////////////////////NEXT ROUND//////////////////////////////////////////////////////" << endl;
 
-  cout << "//////////////////////////////////////////////////Economy Phase//////////////////////////////////////////////////" << endl;
-  for (int i=0; i<k; i++){
-    cout << "Player" << i+1 << "'s turn:" << endl;
-    economy->Economy(players[i]);
-  }
-  cout << "Continuing to next round..." << endl;
-
-  //Equip phase
-  cout << "//////////////////////////////////////////////////Equip Phase//////////////////////////////////////////////////" << endl;
-  for (int i=0; i<k; i++){
-    cout << "Player" << i+1 << "'s turn:" << endl;
-    equip->Equip(players[i], i+1);
-    cout << endl;
-  }
-  cout << "Continuing to next round..." << endl;
-
-  //Battle phase
-  cout << "/////////////////////////////////////////////////Battle Phase////////////////////////////////////////////////////" << endl;
+    //Starting Phase
+    cout << "//////////////////////////////////////////////////Starting Phase//////////////////////////////////////////////////" << endl;
     for (int i=0; i<k; i++){
-    cout << "Player" << i+1 << "'s turn:" << endl;
-    battle->Battle(players[i], players, k);
+      cout << "Player" << i+1 << ":" << endl;
+      start->untapEverything(players[i]);
+      start->drawFateCard(players[i]);
+      start->revealProvinces(players[i]);
+      start->printHand(players[i]);
+      start->printProvinces(players[i]);
+      cout << endl;
+    }
+    cout << "Continuing to next round..." << endl;
+
+    //Equip phase
+    cout << "//////////////////////////////////////////////////Equip Phase//////////////////////////////////////////////////" << endl;
+    for (int i=0; i<k; i++){
+      cout << "Player" << i+1 << "'s turn:" << endl;
+      equip->Equip(players[i], i+1);
+      cout << endl;
+    }
+    cout << "Continuing to next round..." << endl;
+
+    //Battle phase
+    cout << "/////////////////////////////////////////////////Battle Phase////////////////////////////////////////////////////" << endl;
+      for (int i=0; i<k; i++){
+      cout << "Player" << i+1 << "'s turn:" << endl;
+      battle->Battle(players[i], players, k);
+    }
+    cout << "Continuing to next round..." << endl;
+
+    //Economy phase
+    cout << "//////////////////////////////////////////////////Economy Phase//////////////////////////////////////////////////" << endl;
+    for (int i=0; i<k; i++){
+      cout << "Player" << i+1 << "'s turn:" << endl;
+      economy->Economy(players[i]);
+    }
+    cout << "Continuing to next round..." << endl;
+
+    /*for (int i=0; i<k-1; i++)
+      for (int j=0; j<4; j++)
+        players[i].deleteProvince(0);*/
+
+    //Final phase
+    cout << "//////////////////////////////////////////////////Final Phase//////////////////////////////////////////////////" << endl;
+    final->discardSurplusFateCards(players, k);
+    final->printHand(players, k);
+    final->printProvinces(players, k);
+    final->printHoldings(players, k);
+    final->printArena(players, k);
+    game_finished = final->checkWinningCondition(players, k);
+    i++;
   }
-  cout << "Continuing to next round..." << endl;
-
-  //Final phase
-  cout << "//////////////////////////////////////////////////Final Phase//////////////////////////////////////////////////" << endl;
-  final->discardSurplusFateCards(players, k);
-  final->printHand(players, k);
-  final->printProvinces(players, k);
-  final->printHoldings(players, k);
-  final->printArena(players, k);
-  final->checkWinningCondition(players, k);
-
 }

@@ -231,21 +231,25 @@ void finalPhase::printArena(Player* players, int k){
   }
 }
 
-void finalPhase::checkWinningCondition(Player* players, int k){
+bool finalPhase::checkWinningCondition(Player* players, int k){
   int p[k];
   int num=0; //checks how many players have 0 provinces left
   int winner;
   for (int i=0; i<k; i++){
     p[i] = players[i].GetProvinceSize();
   }
-  
+
   for (int i=0; i<k; i++){
     if (p[i] == 0)
       num++;
     else winner = i+1;
   }
-  if (num == k-1)
-    cout << "Winner of the game is the player" << winner << ", congratulations!!" << endl;
-  else
+  if (num == k-1){
+    cout << "Winner of the game is Player" << winner << ", congratulations!!" << endl;
+    return true;
+  }
+  else{
       cout << "No winner yet" << endl;
+      return false;
+    }
 }
