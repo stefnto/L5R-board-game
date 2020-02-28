@@ -22,6 +22,7 @@ void startingPhase::untapEverything(Player& player){
     player.unTappHoldings();
     player.unTappPersonalities();
     player.unTappProvinces();
+    player.unTappStronghold();
 }
 
 

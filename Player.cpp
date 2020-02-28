@@ -33,7 +33,10 @@ void Player::addStronghold(Stronghold*& stronghold){
 
 void Player::printholdings(){
   for (unsigned int i=0; i<holdings.size(); i++){
-    cout << holdings[i].getName() << " | ";
+    cout << holdings[i].getName() << "(" << holdings[i].getharvestValue() << ")" << " | ";
+    if (activePersonalities[i].istapped()==false)
+      cout << "(UnT) | ";
+    else cout  << "(T) | ";
   }
   cout << endl;
 }
@@ -43,10 +46,6 @@ void Player::DrawProvince(){
   provinces.push_back(black);
   giveInitialDefense(black);
   deck->deleteLastBlackCard();
-}
-
-DeckBuilder* Player::GetDeck(){
-  return deck;
 }
 
 int Player::getStrongholdHonour(){
@@ -64,7 +63,6 @@ void Player::printprovinces(){
     if (provinces[i]->Revealed()==1)
       cout << "(R) | ";
     else cout << "(NR) | ";
-    //cout << "(" << provinces[i]->getInitialDefense() << ") | ";
   }
   cout << endl;
 }
@@ -174,6 +172,10 @@ void Player::BuyGreenCard(int n1, int n2){
         hand.erase(hand.begin()+n1); //erases from the hand
       } else cout << "Unefficient personality honour" << endl;
     }
+  }
+  else{
+    cout << "Not enough money to buy this card" << endl;
+    Harvest(hand[n1]->getCost() - money);
   }
 }
 
@@ -427,8 +429,40 @@ void Player::personloseHonour(){
   }
 }
 
-void Player::Harvest(int dif){
-
+void Player::Harvest(int diff){
+  int loop = diff;
+  int k, n1;
+  do{
+    cout << "We get into harvest!\n";
+    if (holdings.empty() == true && stronghold->istapped() == true){
+      cout << "You cannot get money!\n";
+      break;
+    }
+    cout << "Holdings: ";
+    this->printholdings();
+    cout << "Do you want to get harvest from a holding or the stronghold?(type 0 for holding, 1 for stronghold)\n";
+    cin >> k;
+    if (k == 0){
+      if(holdings.empty() == true){
+        cout << "There are no holdings!\n";
+        continue;
+      }
+      cout << "Choose the holding you want to get the harvestValue(1 to " << holdings.size() << "):";
+      cin >> n1;
+      loop -= holdings[n1-1].getharvestValue();
+      money = holdings[n1-1].getharvestValue() - diff;
+    }
+    else if(k==1){
+      if(stronghold->istapped() == true){
+        cout << "You cannot get money from the stronghold\n";
+        continue;
+      }
+      stronghold->Tapp();
+      loop -= stronghold->getMoney();
+      money = stronghold->getMoney() - diff;
+      cout << "You got money from stronghold!\n";
+    }
+  }while(loop > 0);
 }
 
 void Player::Chain(Holding* h1, Holding* h2){

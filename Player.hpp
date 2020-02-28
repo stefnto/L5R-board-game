@@ -28,7 +28,6 @@ class Player{
       void addStronghold(Stronghold*&);
       void printholdings();
       void DrawProvince(); //play gets a province from dynasty deck
-      DeckBuilder* GetDeck();
       int getStrongholdHonour();
       void RevealPro();
       void printprovinces();
