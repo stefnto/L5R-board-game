@@ -35,6 +35,7 @@ class Player{
       void unTappHoldings();
       void unTappPersonalities();
       void unTappProvinces();
+      void unTappStronghold();
       void printhand();
       void printPersonalities();
       void printPersonalitieswithAttack();
@@ -64,6 +65,8 @@ class Player{
       void deleteFollower(int, int);
       void itemloseDurability();
       void personloseHonour();
+      void Harvest(int);
+      void Chain(Holding*, Holding*);
 };
 
 

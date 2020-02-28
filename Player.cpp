@@ -87,6 +87,10 @@ void Player::unTappProvinces(){
   }
 }
 
+void Player::unTappStronghold(){
+  stronghold->unTapp();
+}
+
 void Player::printhand(){
   for (unsigned int i=0; i< hand.size(); i++){
     cout << hand[i]->getName() << "(" << hand[i]->getCost() << ")" << " | ";
@@ -225,6 +229,43 @@ void Player::BuyProvince(int n1){
         provinces.erase(provinces.begin()+n1); //erases from the provinces
         this->DrawProvince(); //gets another province (not revealed)
         cout << "Holding card bought" << endl;
+        cout << "We are searching the case of a chain creation\n"; //checking for chain
+        if (holdings[holdings.size()-1].getMine() == true){
+        // cout << "HI1\n";
+          for (unsigned int i=0; i<holdings.size()-1; i++){
+            if(holdings[i].getGoldMine() == true){
+              // cout << "HI2\n";
+              Chain(&holdings[holdings.size()-1], &holdings[i]);
+              break; //if we form the chain then we don't have to search for other holdings
+            }
+          }
+        }
+        else if(holdings[holdings.size()-1].getGoldMine() == true){
+          for (unsigned int i=0; i<holdings.size()-1; i++){
+            // cout << "HI1\n";
+            static int a = 0, b = 0;
+            if(holdings[i].getMine() == true && a == 0){
+              // cout << "HI2\n";
+              Chain(&holdings[i], &holdings[holdings.size()-1]);
+              a++;
+            }
+            else if(holdings[i].getCrystalMine() == true && b == 0){
+              // cout << "HI2\n";
+              Chain(&holdings[holdings.size()-1], &holdings[i]);
+              b++;
+            }
+          }
+       }
+       else if(holdings[holdings.size()-1].getCrystalMine() == true){
+         // cout << "HI1\n";
+         for (unsigned int i=0; i<holdings.size()-1; i++){
+           if(holdings[i].getGoldMine() == true){
+             // cout << "HI2\n";
+             Chain(&holdings[i], &holdings[holdings.size()-1]);
+             break; //if we form the chain then we don't have to search for other holdings
+           }
+         }
+       }
       } else cout << "Not enough money to buy this card" << endl;
     }
   } else cout << "Card is not revealed-cannot be bought this round" << endl;
@@ -389,5 +430,40 @@ void Player::personloseHonour(){
     }
     else
       activePersonalities[i].lose_honour(); //else person loses honour
+  }
+}
+
+void Player::Harvest(int dif){
+
+}
+
+void Player::Chain(Holding* h1, Holding* h2){
+  if(h1->getMine() == true && h2->getGoldMine() == true){
+    h1->setupperHolding(h2);
+    h2->setsubHolding(h1);
+    h1->setharvestValue(2);
+    if (h2->getupperHolding() == NULL){ //if goldmine doesnt have an upperHolding(CrystalMine)
+      h2->setharvestValue(4);
+      cout << "A chain between a Mine and a GoldMine has been created!\n";
+    }
+    else{
+      h2->setharvestValue(2*(h2->getharvestValue()));
+      h2->setCrystalHarvestValue(3*(h2->getUpperHarvestValue()));
+      cout << "The chain has been completed!\n";
+    }
+  }
+  else if(h1->getGoldMine() == true && h2->getCrystalMine()){
+    h1->setupperHolding(h2);
+    h2->setsubHolding(h1);
+    if (h1->getsubHolding() == NULL){ //if goldmine doesnt have an upperHolding(CrystalMine)
+      h1->setharvestValue(5);
+      h2->setharvestValue(h2->getharvestValue());
+      cout << "A chain between a CrystalMine and a GoldMine has been created!\n";
+    }
+    else{
+      h1->setharvestValue(2*(h1->getharvestValue()));
+      h2->setharvestValue(3*(h2->getharvestValue()));
+      cout << "The chain has been completed!\n";
+    }
   }
 }

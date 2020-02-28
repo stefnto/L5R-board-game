@@ -9,10 +9,24 @@ class Holding: public BlackCard{
     int initialDefense;
     Holding* upperHolding;
     Holding* subHolding;
+    bool isMine;
+    bool isGoldMine;
+    bool isCrystalMine;
   public:
     Holding();
     void setInitialDefense(int);
     int getInitialDefense();
+    int getharvestValue();
+    void setharvestValue(int);
+    void setupperHolding(Holding*);
+    void setsubHolding(Holding*);
+    void setCrystalHarvestValue(int);
+    Holding* getupperHolding();
+    Holding* getsubHolding();
+    int getUpperHarvestValue();
+    bool getMine();
+    bool getGoldMine();
+    bool getCrystalMine();
     // ~Holding();
 };
 
