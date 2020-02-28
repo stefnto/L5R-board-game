@@ -138,9 +138,17 @@ vector<GreenCard *> Personality::getFollower(){
 }
 
 void Personality::printFollower(){
-  cout << this->getName() << "'s followers: ";
+  cout << this->getName() << "'s follower(s): ";
   for (unsigned int i=0; i<follower.size(); i++){
-    cout << follower[i]->getName() << "(AT=" <<follower[i]->getAttackBonus() << ") | " ;
+    cout << follower[i]->getName() << "(AT=" << follower[i]->getAttackBonus() << ") | " ;
+  }
+  cout << endl;
+}
+
+void Personality::printItem(){
+  cout << this->getName() << "'s item(s): ";
+  for (unsigned int i=0; i<item.size(); i++){
+    cout << item[i]->getName() << "(AT=" << item[i]->getAttackBonus() << ") | " ;
   }
   cout << endl;
 }

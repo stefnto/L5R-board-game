@@ -31,6 +31,13 @@ void Player::addStronghold(Stronghold*& stronghold){
   this->stronghold = stronghold;
 }
 
+void Player::printholdings(){
+  for (unsigned int i=0; i<holdings.size(); i++){
+    cout << holdings[i].getName() << " | ";
+  }
+  cout << endl;
+}
+
 void Player::DrawProvince(){
   BlackCard* black = deck->getLastBlackCard();//
   provinces.push_back(black);
@@ -116,12 +123,24 @@ void Player::printPersonalitieswithAttack(){
     cout << "Player has no active Personalities" << endl;
 }
 
+void Player::printFollowersandItems(){
+  for (unsigned int i=0; i<activePersonalities.size(); i++){
+    activePersonalities[i].printFollower();
+    activePersonalities[i].printItem();
+  }
+  cout << endl;
+}
+
 int Player::GetPersonSize(){
   return activePersonalities.size();
 }
 
 int Player::GetHandSize(){
   return hand.size();
+}
+
+void Player::deletefromHand(int pos){
+  hand.erase(hand.begin()+pos);
 }
 
 int Player::GetProvinceSize(){
@@ -160,7 +179,6 @@ int Player::getMoney(){
 
 void Player::giveMoney(){
   this->money = stronghold->getMoney();
-  money = 30;
 }
 
 void Player::giveInitialDefense(BlackCard*& black){

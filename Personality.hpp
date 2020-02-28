@@ -39,6 +39,7 @@ class Personality: public BlackCard{
     int getBonusDefense();
     std::vector<GreenCard *> getFollower();
     void printFollower();
+    void printItem();
     void setInitialDefense(int);
     int getInitialDefense();
     void lose_durability();

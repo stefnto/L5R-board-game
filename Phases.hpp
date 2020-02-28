@@ -34,12 +34,12 @@ class economyPhase{
 
 class finalPhase{
   public:
-    void discardSurplusFateCards();
-    void printGameStatistics();
-    void printHand();
-    void printProvinces();
-    void printArena();
-    void printHoldings();
+    void discardSurplusFateCards(Player*, int);
+    //void printGameStatistics(Player*, int); //prints how many provinces each player has left after the end of every round
+    void printHand(Player*, int);
+    void printProvinces(Player*, int);
+    void printArena(Player*, int);
+    void printHoldings(Player*, int);
 };
 
 #endif

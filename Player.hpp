@@ -5,6 +5,8 @@
 #include <vector>
 #include <list>
 
+#define MAX_CARDS_INHAND 7
+
 class Player{
   private:
     DeckBuilder* deck;
@@ -24,6 +26,7 @@ class Player{
       void GetGreenCard();
       void addHolding(Holding&);
       void addStronghold(Stronghold*&);
+      void printholdings();
       void DrawProvince(); //play gets a province from dynasty deck
       DeckBuilder* GetDeck();
       int getStrongholdHonour();
@@ -35,8 +38,10 @@ class Player{
       void printhand();
       void printPersonalities();
       void printPersonalitieswithAttack();
+      void printFollowersandItems(); //prints a personality's followers and/or items
       int GetPersonSize(); //returns activePersonalities' vector size
       int GetHandSize(); //returns number of GreenCards in hand
+      void deletefromHand(int); //deletes a specified card from the hand
       int GetProvinceSize(); //returns number of provinces
       void BuyGreenCard(int, int); //used in equipPhase
       int getMoney();

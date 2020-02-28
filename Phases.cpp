@@ -178,3 +178,55 @@ void economyPhase::Economy(Player& player){
   }
   cout << endl;
 }
+
+void finalPhase::discardSurplusFateCards(Player* players, int k){
+  int card;
+  for (int i=0; i<k; i++){
+    if (players[i].GetHandSize() > MAX_CARDS_INHAND){
+      cout << "Player" << i+1 << "'s turn:" << endl;
+      while (players[i].GetHandSize() > MAX_CARDS_INHAND){
+        cout << "Choose " << players[i].GetHandSize() - MAX_CARDS_INHAND << " card(s) to discard(1 to " << players[i].GetHandSize() << ")" << endl;
+        players[i].printhand();
+        cin >> card;
+        players[i].deletefromHand(card-1);
+        cout << "Card discarded" << endl;
+      }
+    }
+    else cout << "Player" << i+1 << " has no cards to discard" << endl;
+  }
+  cout << endl;
+}
+
+void finalPhase::printHand(Player* players, int k){
+  for (int i=0; i<k; i++){
+    cout << "Player" << i+1 << "'s hand: ";
+    players[i].printhand();
+  }
+  cout << endl;
+}
+
+
+void finalPhase::printProvinces(Player* players, int k){
+  for (int i=0; i<k; i++){
+    cout << "Player" << i+1 << "'s provinces: ";
+    players[i].printprovinces();
+  }
+  cout << endl;
+}
+
+
+void finalPhase::printHoldings(Player* players, int k){
+  for (int i=0; i<k; i++){
+    cout << "Player" << i+1 << "'s holdings: ";
+    players[i].printholdings();
+  }
+  cout << endl;
+}
+
+void finalPhase::printArena(Player* players, int k){
+  for (int i=0; i<k; i++){
+    cout << "Player" << i+1 << "'s army: ";
+    players[i].printPersonalitieswithAttack();
+    players[i].printFollowersandItems();
+  }
+}
