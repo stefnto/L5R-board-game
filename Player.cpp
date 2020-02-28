@@ -447,8 +447,8 @@ void Player::Chain(Holding* h1, Holding* h2){
       cout << "A chain between a Mine and a GoldMine has been created!\n";
     }
     else{
-      h2->setharvestValue(2*(h2->getharvestValue()));
-      h2->setCrystalHarvestValue(3*(h2->getUpperHarvestValue()));
+      h2->setharvestValue(10);
+      h2->setCrystalHarvestValue(15);
       cout << "The chain has been completed!\n";
     }
   }
@@ -457,12 +457,12 @@ void Player::Chain(Holding* h1, Holding* h2){
     h2->setsubHolding(h1);
     if (h1->getsubHolding() == NULL){ //if goldmine doesnt have an upperHolding(CrystalMine)
       h1->setharvestValue(5);
-      h2->setharvestValue(h2->getharvestValue());
+      h2->setharvestValue(6);
       cout << "A chain between a CrystalMine and a GoldMine has been created!\n";
     }
     else{
-      h1->setharvestValue(2*(h1->getharvestValue()));
-      h2->setharvestValue(3*(h2->getharvestValue()));
+      h1->setharvestValue(10);
+      h2->setharvestValue(18);
       cout << "The chain has been completed!\n";
     }
   }
