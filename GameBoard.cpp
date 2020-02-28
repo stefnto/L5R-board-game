@@ -110,5 +110,6 @@ void GameBoard::gameplay(int k){
   final->printProvinces(players, k);
   final->printHoldings(players, k);
   final->printArena(players, k);
+  final->checkWinningCondition(players, k);
 
 }
