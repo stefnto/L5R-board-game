@@ -34,7 +34,7 @@ void Player::addStronghold(Stronghold*& stronghold){
 void Player::printholdings(){
   for (unsigned int i=0; i<holdings.size(); i++){
     cout << holdings[i].getName() << "(" << holdings[i].getharvestValue() << ")" << " | ";
-    if (activePersonalities[i].istapped()==false)
+    if (holdings[i].istapped()==false)
       cout << "(UnT) | ";
     else cout  << "(T) | ";
   }
@@ -223,7 +223,11 @@ void Player::BuyProvince(int n1){
         provinces.erase(provinces.begin()+n1); //erases from the provinces
         this->DrawProvince(); //gets another province (not revealed)
         cout << "Personality card bought" << endl;
-      } else cout << "Not enough money to buy this card" << endl;
+      } else {
+        cout << "Not enough money to buy this card" << endl;
+        Harvest(person->getCost() - money);
+       }
+      }
     } else if (holding!=NULL){ //card bought was a holding
       if (money >= holding->getCost()){ //player can buy the holding
         money = money - holding->getCost();
@@ -262,7 +266,9 @@ void Player::BuyProvince(int n1){
          }
        }
        cout << "No chain creation could be made" << endl;
-      } else cout << "Not enough money to buy this card" << endl;
+     } else {
+       cout << "Not enough money to buy this card" << endl;
+       Harvest(holding->getCost() - money);
     }
   } else cout << "Card is not revealed-cannot be bought this round" << endl;
 }

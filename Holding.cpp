@@ -62,7 +62,7 @@ CrystalMine::CrystalMine(std::string name){
 Stronghold::Stronghold(std::string name,int k){
   honour = rand()%k;
   initialDefense = 5;
-  money = 7;
+  money = 5;
 }
 
 int Stronghold::getHonour(){
