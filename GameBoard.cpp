@@ -22,7 +22,7 @@ void GameBoard::initializeGameBoard(int k){ //k is the number of the players
     string string1 = "Player" + to_string(i+1) + " Stronghold";
     Stronghold* stronghold = new Stronghold(string1, k);
     players[i].addStronghold(stronghold);//Function addStronghold() here adds the Stronghold of each player
-    players[i].giveMoney(); //Gives starting money to the player
+    //players[i].giveMoney(); //Gives starting money to the player
     for (int j=0; j<4; j++)
       players[i].DrawProvince();
   }
@@ -65,6 +65,8 @@ void GameBoard::gameplay(int k){
     //Starting Phase
     cout << "//////////////////////////////////////////////////Starting Phase//////////////////////////////////////////////////" << endl;
     for (int i=0; i<k; i++){
+      players[i].giveMoney();
+      players[i].ResetTempMoney();
       cout << "Player" << i+1 << ":" << endl;
       start->untapEverything(players[i]);
       start->drawFateCard(players[i]);

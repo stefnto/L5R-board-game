@@ -10,6 +10,8 @@ Player::Player():numberOfProvinces(4), isDead(0)
   deck->createDynastyDeck();
   overallAttack = 0; //we initiallize it
   overallDefense = 0;
+  money = 0;
+  temp_money = 0;
   //isDead = 0; //he's alive
 }
 
@@ -183,8 +185,16 @@ int Player::getMoney(){
   return money;
 }
 
+int Player::getTempMoney(){
+  return temp_money;
+}
+
+void Player::ResetTempMoney(){
+  temp_money = 0;
+}
+
 void Player::giveMoney(){
-  this->money = stronghold->getMoney();
+  this->money += stronghold->getMoney();
 }
 
 void Player::giveInitialDefense(BlackCard*& black){
@@ -223,7 +233,17 @@ void Player::BuyProvince(int n1){
         provinces.erase(provinces.begin()+n1); //erases from the provinces
         this->DrawProvince(); //gets another province (not revealed)
         cout << "Personality card bought" << endl;
-      } else {
+      }
+      else if (money < person->getCost()){ //money not enough, uses temp_money
+        if (temp_money >= person->getCost()){ //player can buy the personality
+          temp_money = temp_money - person->getCost();
+          activePersonalities.emplace_back(*person);
+          provinces.erase(provinces.begin()+n1); //erases from the provinces
+          this->DrawProvince(); //gets another province (not revealed)
+          cout << "Personality card bought with temp_money" << endl;
+        }
+      }
+       else {
         cout << "Not enough money to buy this card" << endl;
         Harvest(person->getCost() - money);
        }
@@ -266,7 +286,11 @@ void Player::BuyProvince(int n1){
          }
        }
        cout << "No chain creation could be made" << endl;
-     } else {
+     }
+     else if (money < holding->getCost()){
+
+     }
+     else {
        cout << "Not enough money to buy this card" << endl;
        Harvest(holding->getCost() - money);
     }
@@ -456,7 +480,7 @@ void Player::Harvest(int diff){
       cout << "Choose the holding you want to get the harvestValue(1 to " << holdings.size() << "):";
       cin >> n1;
       loop -= holdings[n1-1].getharvestValue();
-      money = holdings[n1-1].getharvestValue() - diff;
+      temp_money += holdings[n1-1].getharvestValue() //- diff;
     }
     else if(k==1){
       if(stronghold->istapped() == true){
@@ -465,7 +489,7 @@ void Player::Harvest(int diff){
       }
       stronghold->Tapp();
       loop -= stronghold->getMoney();
-      money = stronghold->getMoney() - diff;
+      temp_money += 2;//stronghold->getMoney() //- diff; //when tapping a stronghold it gives 2 coins
       cout << "You got money from stronghold!\n";
     }
   }while(loop > 0);

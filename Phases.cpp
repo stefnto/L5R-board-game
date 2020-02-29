@@ -172,7 +172,7 @@ void economyPhase::Economy(Player& player){
     cin >> n1;
     while (n1!=0){
       player.BuyProvince(n1-1);
-      cout << "Money = " << player.getMoney() << ", buy another card(0 to exit)?" << endl;
+      cout << "Money = " << player.getMoney() << ", money from holdings = " << player.getTempMoney() << ", buy another card(0 to exit)?" << endl;
       player.printprovinces();
       cin >> n1;
     }
