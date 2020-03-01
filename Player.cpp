@@ -242,13 +242,13 @@ void Player::BuyProvince(int n1){
           this->DrawProvince(); //gets another province (not revealed)
           cout << "Personality card bought with temp_money" << endl;
         }
-      }
        else {
         cout << "Not enough money to buy this card" << endl;
         Harvest(person->getCost() - money);
-       }
       }
-    } else if (holding!=NULL){ //card bought was a holding
+     }
+    }
+     else if (holding!=NULL){ //card bought was a holding   ////////
       if (money >= holding->getCost()){ //player can buy the holding
         money = money - holding->getCost();
         holdings.emplace_back(*holding);//new holding placed at the end of the vector
@@ -256,48 +256,27 @@ void Player::BuyProvince(int n1){
         this->DrawProvince(); //gets another province (not revealed)
         cout << "Holding card bought" << endl;
         cout << "We are searching the case of a chain creation\n"; //checking for chain
-        if (holdings[holdings.size()-1].getMine() == true){ //holding is a mine
-          for (unsigned int i=0; i<holdings.size()-1; i++){
-            if(holdings[i].getGoldMine() == true){
-              Chain(&holdings[holdings.size()-1], &holdings[i]);
-              break; //if we form the chain then we don't have to search for other holdings
-            }
-          }
-        }
-        else if(holdings[holdings.size()-1].getGoldMine() == true){ //holding is a gold mine
-          for (unsigned int i=0; i<holdings.size()-1; i++){
-            static int a = 0, b = 0;
-            if(holdings[i].getMine() == true && a == 0){
-              Chain(&holdings[i], &holdings[holdings.size()-1]);
-              a++; //used as flag to not do more than 1 bindings
-            }
-            else if(holdings[i].getCrystalMine() == true && b == 0){
-              Chain(&holdings[holdings.size()-1], &holdings[i]);
-              b++; //used as flag to not do more than 1 bindings
-            }
-          }
-       }
-       else if(holdings[holdings.size()-1].getCrystalMine() == true){ //holding is a crystal mine
-         for (unsigned int i=0; i<holdings.size()-1; i++){
-           if(holdings[i].getGoldMine() == true){
-             Chain(&holdings[i], &holdings[holdings.size()-1]);
-             break; //if we form the chain then we don't have to search for other holdings
-           }
+        CheckChain();
+      }
+       else if (money < holding->getCost()){
+         if (temp_money >= holding->getCost()){
+           temp_money = temp_money - holding->getCost();
+           holdings.emplace_back(*holding);
+           provinces.erase(provinces.begin()+n1); //erases from the provinces
+           this->DrawProvince(); //gets another province (not revealed)
+           cout << "Holding card bought with temp_money" << endl;
+           cout << "We are searching the case of a chain creation\n"; //checking for chain
+           CheckChain();
          }
+       else {
+         cout << "Not enough money to buy this card" << endl;
+         Harvest(holding->getCost() - money);
        }
-       cout << "No chain creation could be made" << endl;
+      }
      }
-     else if (money < holding->getCost()){
+   } else cout << "Card is not revealed-cannot be bought this round" << endl;//*
+}//
 
-     }
-     else {
-       cout << "Not enough money to buy this card" << endl;
-       Harvest(holding->getCost() - money);
-    }
-  } else cout << "Card is not revealed-cannot be bought this round" << endl;
-}
-
-//new functions
 vector<Personality> Player::getactivePersonalities(){
   return activePersonalities;
 }
@@ -479,8 +458,14 @@ void Player::Harvest(int diff){
       }
       cout << "Choose the holding you want to get the harvestValue(1 to " << holdings.size() << "):";
       cin >> n1;
+      if(holdings[n1-1].istapped() == true){
+        cout << "You cannot get money from the holding\n";
+        continue;
+      }
+      holdings[n1-1].Tapp();
       loop -= holdings[n1-1].getharvestValue();
-      temp_money += holdings[n1-1].getharvestValue() //- diff;
+      temp_money += holdings[n1-1].getharvestValue(); //- diff;
+      cout << "You got money from holding!\n";
     }
     else if(k==1){
       if(stronghold->istapped() == true){
@@ -524,4 +509,36 @@ void Player::Chain(Holding* h1, Holding* h2){
       cout << "The chain has been completed!\n";
     }
   }
+}
+
+void Player::CheckChain(){
+  if (holdings[holdings.size()-1].getMine() == true){ //holding is a mine
+    for (unsigned int i=0; i<holdings.size()-1; i++){
+      if(holdings[i].getGoldMine() == true){
+        Chain(&holdings[holdings.size()-1], &holdings[i]);
+        break; //if we form the chain then we don't have to search for other holdings
+      }
+    }
+  }
+  else if(holdings[holdings.size()-1].getGoldMine() == true){ //holding is a gold mine
+    for (unsigned int i=0; i<holdings.size()-1; i++){
+      static int a = 0, b = 0;
+      if(holdings[i].getMine() == true && a == 0){
+        Chain(&holdings[i], &holdings[holdings.size()-1]);
+        a++; //used as flag to not do more than 1 bindings
+      }
+      else if(holdings[i].getCrystalMine() == true && b == 0){
+        Chain(&holdings[holdings.size()-1], &holdings[i]);
+        b++; //used as flag to not do more than 1 bindings
+      }
+    }
+ }
+ else if(holdings[holdings.size()-1].getCrystalMine() == true){ //holding is a crystal mine
+   for (unsigned int i=0; i<holdings.size()-1; i++){
+     if(holdings[i].getGoldMine() == true){
+       Chain(&holdings[i], &holdings[holdings.size()-1]);
+       break; //if we form the chain then we don't have to search for other holdings
+     }
+   }
+ }
 }

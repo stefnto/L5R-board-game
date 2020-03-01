@@ -69,6 +69,7 @@ class Player{
       void personloseHonour();
       void Harvest(int);
       void Chain(Holding*, Holding*);
+      void CheckChain();
 };
 
 
