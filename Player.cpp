@@ -35,7 +35,7 @@ void Player::addStronghold(Stronghold*& stronghold){
 
 void Player::printholdings(){
   for (unsigned int i=0; i<holdings.size(); i++){
-    cout << holdings[i].getName() << "(HarvestValue=" << holdings[i].getharvestValue() << ")" << " | ";
+    cout << holdings[i].getName() << "(HarvestValue=" << holdings[i].getharvestValue() << ")";
     if (holdings[i].istapped()==false)
       cout << "(UnT) | ";
     else cout  << "(T) | ";
@@ -235,12 +235,31 @@ void Player::BuyProvince(int n1){
         cout << "Personality card bought" << endl;
       }
       else if (money < person->getCost()){ //money not enough, uses temp_money
-        if (temp_money >= person->getCost()){ //player can buy the personality
-          temp_money = temp_money - person->getCost();
+        if (temp_money + money == person->getCost()){ //player can buy the personality
+          //temp_money = temp_money - person->getCost();
+          temp_money = 0 ;
+          money=0;
           activePersonalities.emplace_back(*person);
           provinces.erase(provinces.begin()+n1); //erases from the provinces
           this->DrawProvince(); //gets another province (not revealed)
-          cout << "Personality card bought with temp_money" << endl;
+          cout << "Personality card bought with money from holdings and money" << endl;
+        }
+        else if (temp_money+money > person->getCost()){
+          if (temp_money > money){
+            temp_money = temp_money - (person->getCost()-money);
+            money = 0;
+            activePersonalities.emplace_back(*person);
+            provinces.erase(provinces.begin()+n1); //erases from the provinces
+            this->DrawProvince(); //gets another province (not revealed)
+            cout << "Personality card bought with money from holdings and money" << endl;
+          } else if(money > temp_money){
+            money = money - (person->getCost()-temp_money);
+            temp_money = 0;
+            activePersonalities.emplace_back(*person);
+            provinces.erase(provinces.begin()+n1); //erases from the provinces
+            this->DrawProvince(); //gets another province (not revealed)
+            cout << "Personality card bought with money from holdings and money" << endl;
+          }
         }
        else {
         cout << "Not enough money to buy this card" << endl;
@@ -259,18 +278,41 @@ void Player::BuyProvince(int n1){
         CheckChain();
       }
        else if (money < holding->getCost()){
-         if (temp_money >= holding->getCost()){
-           temp_money = temp_money - holding->getCost();
+         if (temp_money+money == holding->getCost()){
+           //temp_money = temp_money - holding->getCost();
+           temp_money = 0;
+           money = 0;
            holdings.emplace_back(*holding);
            provinces.erase(provinces.begin()+n1); //erases from the provinces
            this->DrawProvince(); //gets another province (not revealed)
-           cout << "Holding card bought with temp_money" << endl;
+           cout << "Holding card bought with money from holdings and money" << endl;
            cout << "We are searching the case of a chain creation\n"; //checking for chain
            CheckChain();
          }
+         else if (temp_money + money > holding->getCost()){
+           if (temp_money > money){
+             temp_money = temp_money - (holding->getCost()-money);
+             money = 0;
+             holdings.emplace_back(*holding);
+             provinces.erase(provinces.begin()+n1); //erases from the provinces
+             this->DrawProvince(); //gets another province (not revealed)
+             cout << "Holding card bought with money from holdings and money" << endl;
+             cout << "We are searching the case of a chain creation\n"; //checking for chain
+             CheckChain();
+           } else if(money > temp_money){
+             money = money - (holding->getCost()-temp_money);
+             temp_money = 0;
+             holdings.emplace_back(*holding);
+             provinces.erase(provinces.begin()+n1); //erases from the provinces
+             this->DrawProvince(); //gets another province (not revealed)
+             cout << "Holding card bought with money from holdings and money" << endl;
+             cout << "We are searching the case of a chain creation\n"; //checking for chain
+             CheckChain();
+           }
+         }
        else {
          cout << "Not enough money to buy this card" << endl;
-         Harvest(holding->getCost() - money);
+         Harvest(holding->getCost() - money - temp_money);
        }
       }
      }
