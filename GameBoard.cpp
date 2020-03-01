@@ -88,6 +88,16 @@ void GameBoard::gameplay(int k){
 
     //Battle phase
     cout << "/////////////////////////////////////////////////Battle Phase////////////////////////////////////////////////////" << endl;
+      cout << "///////////////Defense Phase//////////////////" << endl;
+
+      for (int i=0; i<k; i++){ //first all the players choose to defend their provinces or not
+        cout << "Player" << i+1 << "'s turn:" << endl;
+        cout << "Army: ";
+        players[i].printPersonalities();
+        battle->Defend(players[i]);
+        cout << endl;
+      }
+      cout << "///////////////Attack Phase//////////////////" << endl;
       for (int i=0; i<k; i++){
       cout << "Player" << i+1 << "'s turn:" << endl;
       battle->Battle(players[i], players, k);

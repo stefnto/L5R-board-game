@@ -37,7 +37,7 @@ void equipPhase::Equip(Player& player, int i){
     player.printPersonalities();
     int n1=1, n2;
     while (n1!=0){
-      cout << "Money = " << player.getMoney() << endl;
+      cout << "Money = " << player.getMoney() << ", money from holdings = " << player.getTempMoney() << endl;
       cout << "Available Green cards: ";
       player.printhand();
       cout << "Choose a Green Card to buy(writing the number of its place in the order shown, from 1 to " << player.GetHandSize() << ",0 to exit):";
@@ -57,9 +57,6 @@ void equipPhase::Equip(Player& player, int i){
 void battlePhase::Battle(Player& player, Player* players, int k){ //k is the size of players' array
   if (player.GetPersonSize()!= 0){ //player has army
     bool battle;
-    cout << "Army: ";
-    player.printPersonalities();
-    Defend(player);
     cout << "Do you want to attack a player(1-yes 0-no)?";
     cin >> battle;
     if (battle==true){
@@ -109,7 +106,7 @@ void battlePhase::Attack(Player& player, Player* players, int k){
         else if (result < 0){ //bullet 3
            player.loseAttackingPersonalities();
            cout << endl;
-           players[attack-1].loseChosenDefendingPersonalities(result);
+           players[attack-1].loseChosenDefendingPersonalities(players[attack-1].getOverallDefense() - player.getOverallAttack());
          }
       }
     } else cout << "Player cannot attack himself" << endl;
@@ -190,10 +187,10 @@ void finalPhase::discardSurplusFateCards(Player* players, int k){
         players[i].printhand();
         cin >> card;
         players[i].deletefromHand(card-1);
-        cout << "Card discarded" << endl;
+        cout << "Card discarded\n" << endl;
       }
     }
-    else cout << "Player" << i+1 << " has no cards to discard" << endl;
+    else cout << "Player" << i+1 << " has no cards to discard\n" << endl;
   }
   cout << endl;
 }

@@ -153,28 +153,95 @@ int Player::GetProvinceSize(){
 
 void Player::BuyGreenCard(int n1, int n2){
   int type, honour, minHon; //minHon is minimumHonour
-  if (money >= hand[n1]->getCost()){
-    type = hand[n1]->getType();
-    honour = activePersonalities[n2].getHonour();
-    minHon = hand[n1]->getMinHonour();
+  type = hand[n1]->getType();
+  honour = activePersonalities[n2].getHonour();
+  minHon = hand[n1]->getMinHonour();
     if (type==FOLLOWER){ //means card is a Follower
       if (honour >= minHon){
-        money = money - hand[n1]->getCost();
-        this->EnableBonus(hand[n1], n2);
-        activePersonalities[n2].getFollower(hand[n1]); //adds to followers of personality
-        cout << "Follower added to active Personality\n" << endl;
-        hand.erase(hand.begin()+n1); //erases from the hand
+        if (money>=hand[n1]->getCost()){
+          money = money - hand[n1]->getCost();
+          this->EnableBonus(hand[n1], n2);
+          activePersonalities[n2].getFollower(hand[n1]); //adds to followers of personality
+          cout << "Follower added to active Personality\n" << endl;
+          hand.erase(hand.begin()+n1); //erases from the hand
+        }
+        else if (money < hand[n1]->getCost()){
+          if (temp_money + money == hand[n1]->getCost()){
+            temp_money = 0;
+            money = 0;
+            this->EnableBonus(hand[n1], n2);
+            activePersonalities[n2].getFollower(hand[n1]); //adds to followers of personality
+            cout << "Follower added to active Personality\n" << endl;
+            hand.erase(hand.begin()+n1); //erases from the hand
+          }
+          else if (temp_money+money > hand[n1]->getCost()){
+            if (temp_money > money){
+              temp_money = temp_money - (hand[n1]->getCost() - money);
+              money = 0;
+              this->EnableBonus(hand[n1], n2);
+              activePersonalities[n2].getFollower(hand[n1]); //adds to followers of personality
+              cout << "Follower added to active Personality\n" << endl;
+              hand.erase(hand.begin()+n1); //erases from the hand
+            }
+            else if (money > temp_money){
+              money = money - (hand[n1]->getCost() - temp_money);
+              temp_money = 0;
+              this->EnableBonus(hand[n1], n2);
+              activePersonalities[n2].getFollower(hand[n1]); //adds to followers of personality
+              cout << "Follower added to active Personality\n" << endl;
+              hand.erase(hand.begin()+n1); //erases from the hand
+            }
+          }
+          else{
+            cout << "Not enough money to buy this card" << endl;
+            Harvest(hand[n1]->getCost() - money - temp_money);
+          }
+        }
       } else cout << "Unefficient personality honour" << endl;
     } else if (type==ITEM){//means card is an item
       if (honour >= minHon){
-        money = money - hand[n1]->getCost();
-        this->EnableBonus(hand[n1], n2);
-        activePersonalities[n2].getItem(hand[n1]); //adds to items of personality
-        cout << "Item added to active Personality\n" << endl;
-        hand.erase(hand.begin()+n1); //erases from the hand
+        if (money >= hand[n1]->getCost()){
+          money = money - hand[n1]->getCost();
+          this->EnableBonus(hand[n1], n2);
+          activePersonalities[n2].getItem(hand[n1]); //adds to items of personality
+          cout << "Item added to active Personality\n" << endl;
+          hand.erase(hand.begin()+n1); //erases from the hand
+        }
+        else if (money < hand[n1]->getCost()){
+          if (temp_money + money == hand[n1]->getCost()){
+            temp_money = 0;
+            money = 0;
+            this->EnableBonus(hand[n1], n2);
+            activePersonalities[n2].getItem(hand[n1]); //adds to items of personality
+            cout << "Item added to active Personality\n" << endl;
+            hand.erase(hand.begin()+n1); //erases from the hand
+          }
+          else if (temp_money+money > hand[n1]->getCost()){
+            if (temp_money > money){
+              temp_money = temp_money - (hand[n1]->getCost() - money);
+              money = 0;
+              this->EnableBonus(hand[n1], n2);
+              activePersonalities[n2].getItem(hand[n1]); //adds to items of personality
+              cout << "Item added to active Personality\n" << endl;
+              hand.erase(hand.begin()+n1); //erases from the hand
+            }
+            else if (money > temp_money){
+              money = money - (hand[n1]->getCost() - temp_money);
+              temp_money = 0;
+              this->EnableBonus(hand[n1], n2);
+              activePersonalities[n2].getItem(hand[n1]); //adds to items of personality
+              cout << "Item added to active Personality\n" << endl;
+              hand.erase(hand.begin()+n1); //erases from the hand
+            }
+          }
+          else{
+            cout << "Not enough money to buy this card" << endl;
+            Harvest(hand[n1]->getCost() - money - temp_money);
+          }
+        }
+
       } else cout << "Unefficient personality honour" << endl;
     }
-  }
   else{
     cout << "Not enough money to buy this card" << endl;
     Harvest(hand[n1]->getCost() - money);
@@ -263,7 +330,7 @@ void Player::BuyProvince(int n1){
         }
        else {
         cout << "Not enough money to buy this card" << endl;
-        Harvest(person->getCost() - money);
+        Harvest(person->getCost() - money - temp_money);
       }
      }
     }
