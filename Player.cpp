@@ -35,7 +35,7 @@ void Player::addStronghold(Stronghold*& stronghold){
 
 void Player::printholdings(){
   for (unsigned int i=0; i<holdings.size(); i++){
-    cout << holdings[i].getName() << "(" << holdings[i].getharvestValue() << ")" << " | ";
+    cout << holdings[i].getName() << "(HarvestValue=" << holdings[i].getharvestValue() << ")" << " | ";
     if (holdings[i].istapped()==false)
       cout << "(UnT) | ";
     else cout  << "(T) | ";
